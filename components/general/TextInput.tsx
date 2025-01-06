@@ -8,14 +8,17 @@ type inputProps = {
   label: string;
   type?: "text" | "password";
   placeholder?: string;
+  onTextChange?: (val: any) => void;
+  mode?: string;
 };
 
-const FormInput = ({ label, type, placeholder }: inputProps) => {
-  const renderIcons = () => {
-    if (type === "text") return "checkmark-circle-outline";
-    if (type === "password") return "eye";
-  };
-
+const FormInput = ({
+  label,
+  type,
+  placeholder,
+  onTextChange,
+  mode,
+}: inputProps) => {
   const [showPassword, setShowPassword] = useState<boolean>(true);
 
   return (
@@ -25,11 +28,15 @@ const FormInput = ({ label, type, placeholder }: inputProps) => {
         <TextInput
           style={[styles.textInput, TextType.paragraph]}
           placeholder={placeholder}
+          inputMode={mode ? mode : ("text" as any)}
           secureTextEntry={type === "password"}
+          onChangeText={(val) => {
+            if (onTextChange) {
+              onTextChange(val);
+            }
+          }}
         />
         <View style={styles.iconContainer}>
-          {/* <PasswordCheck variant="Outline" color="red" size={20} /> */}
-
           <Ionicons
             size={20}
             color={"black"}

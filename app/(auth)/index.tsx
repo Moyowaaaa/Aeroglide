@@ -4,16 +4,16 @@ import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import FormInput from "@/components/general/TextInput";
 import { colors, TextType } from "@/constants";
 import { Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
 
 const AuthScreen = () => {
-  const [authType, setAuthType] = useState<"register" | "create">("register");
-  const [currentStep, setCurrentStep] = useState<"login" | "verify">("login");
+  const router = useRouter();
+
   return (
     <CustomSafeAreaView>
-      <View className="w-full gap-16 flex-1 px-6 py-6">
+      <View className="w-full gap-16 flex-1 px-6 pb-6">
         <Header
           title="Welcome Back 👋🏽"
           desc="Hello, welcome back to Aeroglide"
@@ -44,7 +44,12 @@ const AuthScreen = () => {
           </View>
 
           <View style={{ marginTop: 20 }}>
-            <CustomButton type="primary" width="100%" disabled={false}>
+            <CustomButton
+              type="primary"
+              width="100%"
+              disabled={false}
+              onPress={() => router.push("/(auth)/verification")}
+            >
               <Text style={{ fontSize: 16, color: "white" }}>Send Code</Text>
             </CustomButton>
           </View>
@@ -85,16 +90,18 @@ const AuthScreen = () => {
             </CustomButton>
           </View>
 
-          <Text
-            style={{
-              ...TextType.paragraph,
-              color: colors.grey,
-              textAlign: "center",
-            }}
-          >
-            Don’t have and account?{" "}
-            <Text style={{ color: colors.black }}>Sign Up</Text>
-          </Text>
+          <Link href={"/(auth)/create"}>
+            <Text
+              style={{
+                ...TextType.paragraph,
+                color: colors.grey,
+                textAlign: "center",
+              }}
+            >
+              Don’t have and account?{" "}
+              <Text style={{ color: colors.black }}>Sign Up</Text>
+            </Text>
+          </Link>
         </View>
       </View>
     </CustomSafeAreaView>

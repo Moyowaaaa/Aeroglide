@@ -16,6 +16,7 @@ interface ButtonProps {
   width?: string | number;
   disabled?: boolean;
   style?: ViewStyle | ViewStyle[];
+  onPress?: () => void;
 }
 
 export const CustomButton = ({
@@ -25,6 +26,7 @@ export const CustomButton = ({
   width,
   disabled = false,
   style,
+  onPress,
 }: ButtonProps) => {
   const buttonStyles = [
     styles.button,
@@ -43,6 +45,11 @@ export const CustomButton = ({
       style={buttonStyles}
       disabled={disabled}
       activeOpacity={disabled ? 1 : 0.8}
+      onPress={() => {
+        if (onPress) {
+          onPress();
+        }
+      }}
     >
       {children}
     </TouchableOpacity>

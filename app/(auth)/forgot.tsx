@@ -3,10 +3,13 @@ import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import FormInput from "@/components/general/TextInput";
 import { colors, TextType } from "@/constants";
-import React from "react";
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
 import { Text, View } from "react-native";
 
 const ForgotPasswordScreen = () => {
+  const router = useRouter();
+  const [phoneNumber, setPhoneNumber] = useState<number | null>(null);
   return (
     <CustomSafeAreaView>
       <View className="w-full  flex-1 px-6 py-6">
@@ -20,6 +23,8 @@ const ForgotPasswordScreen = () => {
             label="Enter your phone number"
             placeholder="Phone Number"
             type="text"
+            onTextChange={(val) => setPhoneNumber(val)}
+            mode="numeric"
           />
 
           <View style={{ gap: 20 }}>
@@ -37,7 +42,17 @@ const ForgotPasswordScreen = () => {
               We’ll send you a (5) pin code to verify your information
             </Text>
 
-            <CustomButton type="primary" width="100%" disabled={false}>
+            <CustomButton
+              type="primary"
+              width="100%"
+              disabled={!phoneNumber}
+              onPress={() =>
+                router.push({
+                  pathname: "/(auth)/verification",
+                  params: { phone: phoneNumber },
+                })
+              }
+            >
               <Text style={{ fontSize: 16, color: "white" }}>Send Code</Text>
             </CustomButton>
           </View>

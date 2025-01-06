@@ -10,6 +10,7 @@ export const colors = {
   grey: "#A8A8A8",
   blue: "#454DA9",
   darkGrey: "#777",
+  otpGrey: "#CACACA",
 };
 
 export const TextType = {

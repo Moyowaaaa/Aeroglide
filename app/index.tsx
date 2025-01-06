@@ -1,11 +1,9 @@
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import NavigationBar from "@/components/general/NavigationBar";
-import { colors, fontTypes, TextType } from "@/constants";
+import { colors, TextType } from "@/constants";
 import { Link, useRouter } from "expo-router";
 import {
   Image,
   ImageBackground,
-  StyleSheet,
   Text,
   TouchableOpacity,
   View,

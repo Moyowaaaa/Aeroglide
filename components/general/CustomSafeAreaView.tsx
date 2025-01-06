@@ -1,6 +1,11 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PropsWithChildren } from "react";
-import { Platform, KeyboardAvoidingView } from "react-native";
+import {
+  Platform,
+  KeyboardAvoidingView,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 
 const CustomSafeAreaView = ({ children, ...rest }: PropsWithChildren) => {
   return (
@@ -18,7 +23,9 @@ const CustomSafeAreaView = ({ children, ...rest }: PropsWithChildren) => {
         className="flex-1"
         keyboardVerticalOffset={10}
       >
-        {children}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+          {children}
+        </TouchableWithoutFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
