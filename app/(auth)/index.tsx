@@ -3,10 +3,10 @@ import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import FormInput from "@/components/general/TextInput";
 import { colors, TextType } from "@/constants";
-import { Ionicons, MaterialIcons } from "@expo/vector-icons";
+import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
-import React, { useState } from "react";
-import { Text, View } from "react-native";
+import React from "react";
+import { Image, Text, View } from "react-native";
 
 const AuthScreen = () => {
   const router = useRouter();
@@ -84,7 +84,13 @@ const AuthScreen = () => {
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <Ionicons name="logo-google" size={30} />
+                <Image
+                  source={require("../../assets/images/google.png")}
+                  width={30}
+                  height={30}
+                  className="max-h-[30px] max-w-[30px]"
+                  resizeMode="contain"
+                />
                 <Text>Google</Text>
               </View>
             </CustomButton>

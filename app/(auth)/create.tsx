@@ -6,7 +6,7 @@ import { colors, TextType } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import React, { useState } from "react";
-import { ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
 import Checkbox from "expo-checkbox";
 
 const CreateAccountScreen = () => {
@@ -106,7 +106,13 @@ const CreateAccountScreen = () => {
               <View
                 style={{ flexDirection: "row", alignItems: "center", gap: 4 }}
               >
-                <Ionicons name="logo-google" size={30} />
+                <Image
+                  source={require("../../assets/images/google.png")}
+                  width={30}
+                  height={30}
+                  className="max-h-[30px] max-w-[30px]"
+                  resizeMode="contain"
+                />
                 <Text>Google</Text>
               </View>
             </CustomButton>
