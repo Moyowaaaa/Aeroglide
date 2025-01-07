@@ -6,6 +6,7 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
+import { isAndroid } from "@/constants";
 
 const CustomSafeAreaView = ({ children, ...rest }: PropsWithChildren) => {
   return (
@@ -13,12 +14,12 @@ const CustomSafeAreaView = ({ children, ...rest }: PropsWithChildren) => {
       style={{
         flex: 1,
         backgroundColor: "white",
-        paddingTop: Platform.OS === "android" ? 25 : 10,
+        paddingTop: isAndroid ? 25 : 10,
       }}
       {...rest}
     >
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={!isAndroid ? "padding" : "height"}
         contentContainerStyle={{ flexGrow: 1 }}
         className="flex-1"
         keyboardVerticalOffset={10}

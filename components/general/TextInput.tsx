@@ -53,8 +53,6 @@ const FormInput = ({
               }
             }}
           />
-          {/* <Ionicons size={20} color={"black"} name="eye" />
-          <Ionicons size={20} color={"black"} name="eye-off" /> */}
         </View>
       </View>
     </View>

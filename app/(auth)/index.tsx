@@ -48,9 +48,9 @@ const AuthScreen = () => {
               type="primary"
               width="100%"
               disabled={false}
-              onPress={() => router.push("/(auth)/verification")}
+              onPress={() => router.push("/(home)" as any)}
             >
-              <Text style={{ fontSize: 16, color: "white" }}>Send Code</Text>
+              <Text style={{ fontSize: 16, color: "white" }}>Login</Text>
             </CustomButton>
           </View>
 

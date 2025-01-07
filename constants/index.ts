@@ -1,3 +1,5 @@
+import { Platform } from "react-native";
+
 export const fontTypes = {
   regular: "Poppins_400Regular",
   bold: "Poppins_700Bold",
@@ -5,12 +7,16 @@ export const fontTypes = {
   semiBold: "Poppins_600SemiBold,",
 };
 
+export const isAndroid = Platform.OS === "android";
+
 export const colors = {
   black: "#000",
   grey: "#A8A8A8",
   blue: "#454DA9",
   darkGrey: "#777",
   otpGrey: "#CACACA",
+  teal: "#00A596",
+  white: "white",
 };
 
 export const TextType = {
