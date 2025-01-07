@@ -42,25 +42,25 @@ const styles = StyleSheet.create({
     gap: 24,
   },
   inputContainer: {
-    flexDirection: "row", // Arrange items in a row
-    alignItems: "center", // Align items vertically in the center
+    flexDirection: "row",
+    alignItems: "center",
     borderWidth: 1,
     borderColor: "#d6d6d6",
     borderRadius: 15,
     overflow: "hidden",
   },
   textInput: {
-    flex: 1, // Take up available space
+    flex: 1,
     paddingVertical: 12,
     paddingLeft: 10,
     fontSize: 23,
   },
   iconContainer: {
-    justifyContent: "center", // Center the icon
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: 10,
     borderLeftWidth: 1,
-    borderLeftColor: "#d6d6d6", // Optional: separator between input and icon
+    borderLeftColor: "#d6d6d6",
   },
 });
