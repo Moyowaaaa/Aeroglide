@@ -1,4 +1,4 @@
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import React, { useMemo } from "react";
 import { Image, Text, View } from "react-native";
 
@@ -23,7 +23,7 @@ const HomeHeader = () => {
       <View style={{ gap: 2 }}>
         <Text
           style={{
-            ...TextType.paragraph,
+            ...textType.paragraph,
             fontSize: 15,
             color: colors.grey,
           }}
@@ -33,7 +33,7 @@ const HomeHeader = () => {
 
         <Text
           style={{
-            ...TextType.header,
+            ...textType.header,
             fontSize: 21,
             color: colors.black,
           }}

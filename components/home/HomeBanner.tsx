@@ -1,4 +1,4 @@
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { moderateScale } from "@/utils/scaleUtils";
 import React from "react";
 import { Image, Text, View } from "react-native";
@@ -15,7 +15,7 @@ const HomeBanner = () => {
     >
       <Text
         style={{
-          ...TextType.header,
+          ...textType.header,
           color: colors.black,
           paddingVertical: 27,
           paddingHorizontal: 20,

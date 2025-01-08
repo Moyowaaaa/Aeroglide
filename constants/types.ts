@@ -9,6 +9,7 @@ export type airport = {
 };
 
 export type location = {
+  landmark?: string;
   name: string;
   desc?: string;
   stars: number;
@@ -18,4 +19,5 @@ export type location = {
   currentWhether: number;
   distance: number;
   images: string;
+  statusBarAccent?: "dark-content" | "light-content";
 };

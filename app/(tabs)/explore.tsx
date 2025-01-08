@@ -1,15 +1,18 @@
 import Header from "@/components/auth/Header";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import NavigationBar from "@/components/general/NavigationBar";
-import { TextType } from "@/constants";
-import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { colors, textType } from "@/constants";
+import React, { useState } from "react";
+import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
+import ExploreGallery from "@/components/explore/Gallery";
 
 const ExploreScreen = () => {
+  const [searchedTerm, setSearchedTerm] = useState<string>("");
+
   return (
     <CustomSafeAreaView>
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <NavigationBar title="Explore" canGoBack={true} />
 
         <View
@@ -19,16 +22,18 @@ const ExploreScreen = () => {
           }}
         >
           <TextInput
-            style={[styles.textInput, TextType.paragraph]}
+            style={[styles.textInput, textType.paragraph]}
             placeholder="Search your dream location."
+            placeholderTextColor={colors.darkGrey}
+            onChangeText={(val) => setSearchedTerm(val)}
           />
           <View style={styles.iconContainer}>
             <EvilIcons name="search" size={20} color="black" />
           </View>
         </View>
 
-        <Text>Hola</Text>
-      </View>
+        <ExploreGallery searchedTerm={searchedTerm} />
+      </ScrollView>
     </CustomSafeAreaView>
   );
 };
@@ -38,7 +43,7 @@ export default ExploreScreen;
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fefefe",
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     gap: 24,
   },
   inputContainer: {

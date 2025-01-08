@@ -17,9 +17,10 @@ export const colors = {
   otpGrey: "#CACACA",
   teal: "#00A596",
   white: "white",
+  orange: "#FF5A00",
 };
 
-export const TextType = {
+export const textType = {
   header: {
     fontFamily: fontTypes.bold,
     fontSize: 28,

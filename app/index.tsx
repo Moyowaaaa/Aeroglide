@@ -1,5 +1,5 @@
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { Link, useRouter } from "expo-router";
 import {
   Image,
@@ -73,7 +73,7 @@ export default function Index() {
           <View className="gap-2">
             <Text
               style={{
-                ...TextType.header,
+                ...textType.header,
               }}
               className="max-w-[25rem]  mx-auto text-center"
             >
@@ -82,7 +82,7 @@ export default function Index() {
 
             <Text
               style={{
-                ...TextType.paragraph,
+                ...textType.paragraph,
                 color: colors.grey,
               }}
               className="max-w-[25rem]  mx-auto text-center font-[600]"

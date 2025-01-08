@@ -2,7 +2,7 @@ import Header from "@/components/auth/Header";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import FormInput from "@/components/general/TextInput";
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import React, { useState } from "react";
@@ -55,7 +55,7 @@ const CreateAccountScreen = () => {
               <Text
                 style={[
                   {
-                    ...TextType.paragraph,
+                    ...textType.paragraph,
                     color: colors.grey,
                     alignSelf: "flex-end",
                     fontSize: 12,
@@ -81,7 +81,7 @@ const CreateAccountScreen = () => {
             <Text
               style={[
                 {
-                  ...TextType.paragraph,
+                  ...textType.paragraph,
                   color: colors.grey,
                 },
               ]}
@@ -121,7 +121,7 @@ const CreateAccountScreen = () => {
           <Link href={"/(auth)"}>
             <Text
               style={{
-                ...TextType.paragraph,
+                ...textType.paragraph,
                 color: colors.grey,
                 textAlign: "center",
               }}

@@ -1,22 +1,36 @@
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { location } from "@/constants/types";
 import { FontAwesome6 } from "@expo/vector-icons";
 import React from "react";
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import {
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { useRouter } from "expo-router";
 
 interface locationCardProps {
   location: location;
-  cardHeight: "tall" | "short";
 }
 
-const LocationCard = ({
-  location,
-  cardHeight = "short",
-}: locationCardProps) => {
+const LocationCard = ({ location }: locationCardProps) => {
+  const router = useRouter();
+  const navigateToLocationDetails = (location: location) => {
+    router.push({
+      pathname: `/explore/${location.name}` as any,
+      params: {
+        location: location.name,
+      },
+    });
+  };
+
   return (
-    <View
-      style={{ ...styles.container, height: cardHeight === "tall" ? 400 : 250 }}
+    <TouchableOpacity
+      style={{ ...styles.container, height: 250 }}
+      onPress={() => navigateToLocationDetails(location)}
     >
       <View
         style={{
@@ -62,7 +76,7 @@ const LocationCard = ({
             <Text
               style={{
                 alignSelf: "flex-end",
-                ...TextType.header,
+                ...textType.header,
                 color: colors.white,
                 fontSize: 16,
               }}
@@ -84,22 +98,23 @@ const LocationCard = ({
       >
         <Text
           style={{
-            ...TextType.header,
+            ...textType.header,
           }}
         >
-          {location.name.split(" ")[1]} {location.name.split(" ")[2]}
+          {location.name.split(" ")[1]} {location.name.split(" ")[2]}{" "}
+          {location.name.split(" ")[3]}
         </Text>
 
         <Text
           style={{
-            ...TextType.subHeader,
+            ...textType.subHeader,
             fontSize: 10,
           }}
         >
           {location.overview}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 const styles = StyleSheet.create({

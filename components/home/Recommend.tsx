@@ -1,4 +1,4 @@
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import React from "react";
 import { ScrollView, Text, View } from "react-native";
 import { ArrowRight2 } from "iconsax-react-native";
@@ -18,7 +18,7 @@ const Recommend = () => {
       >
         <Text
           style={{
-            ...TextType.subHeader,
+            ...textType.subHeader,
             fontSize: 15,
             color: colors.black,
           }}
@@ -26,7 +26,7 @@ const Recommend = () => {
           Recommended
         </Text>
 
-        <Link href={"/(home)/explore"}>
+        <Link href={"/(tabs)/explore"}>
           <View
             style={{
               flexDirection: "row",
@@ -41,9 +41,11 @@ const Recommend = () => {
       </View>
 
       <ScrollView horizontal style={{ gap: 32 }}>
-        {locations?.map((location, index) => (
-          <LocationCard key={index} location={location} cardHeight="short" />
-        ))}
+        {locations
+          ?.map((location, index) => (
+            <LocationCard key={index} location={location} />
+          ))
+          .slice(0, 3)}
       </ScrollView>
     </View>
   );

@@ -2,7 +2,7 @@ import Header from "@/components/auth/Header";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import FormInput from "@/components/general/TextInput";
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
 import React from "react";
@@ -32,7 +32,7 @@ const AuthScreen = () => {
               <Text
                 style={[
                   {
-                    ...TextType.paragraph,
+                    ...textType.paragraph,
                     color: colors.grey,
                     alignSelf: "flex-end",
                   },
@@ -48,7 +48,7 @@ const AuthScreen = () => {
               type="primary"
               width="100%"
               disabled={false}
-              onPress={() => router.push("/(home)" as any)}
+              onPress={() => router.push("/(tabs)" as any)}
             >
               <Text style={{ fontSize: 16, color: "white" }}>Login</Text>
             </CustomButton>
@@ -59,7 +59,7 @@ const AuthScreen = () => {
             <Text
               style={[
                 {
-                  ...TextType.paragraph,
+                  ...textType.paragraph,
                   color: colors.grey,
                 },
               ]}
@@ -99,7 +99,7 @@ const AuthScreen = () => {
           <Link href={"/(auth)/create"}>
             <Text
               style={{
-                ...TextType.paragraph,
+                ...textType.paragraph,
                 color: colors.grey,
                 textAlign: "center",
               }}

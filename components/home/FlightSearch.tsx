@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { colors, isAndroid, TextType } from "@/constants";
+import { colors, isAndroid, textType } from "@/constants";
 import { CustomButton } from "../general/CustomButton";
 
 const FlightSearch = () => {
@@ -69,7 +69,7 @@ const FlightSearch = () => {
         >
           <Text
             style={{
-              ...TextType.paragraph,
+              ...textType.paragraph,
               color: colors.teal,
               paddingLeft: 6,
             }}
@@ -108,7 +108,7 @@ const FlightSearch = () => {
         >
           <Text
             style={{
-              ...TextType.paragraph,
+              ...textType.paragraph,
               color: colors.teal,
               paddingLeft: 6,
             }}
@@ -141,7 +141,7 @@ const FlightSearch = () => {
         <TextInput
           placeholder="From"
           placeholderTextColor={colors.teal}
-          style={[styles.textInput, TextType.paragraph]}
+          style={[styles.textInput, textType.paragraph]}
         />
       </View>
 
@@ -149,7 +149,7 @@ const FlightSearch = () => {
         <TextInput
           placeholder="To"
           placeholderTextColor={colors.teal}
-          style={[styles.textInput, TextType.paragraph]}
+          style={[styles.textInput, textType.paragraph]}
         />
       </View>
 
@@ -173,13 +173,13 @@ const FlightSearch = () => {
           <TextInput
             style={{
               ...styles.textInput,
-              ...TextType.paragraph,
+              ...textType.paragraph,
               paddingVertical: 8,
             }}
             placeholder="Seat"
           />
           <View style={styles.iconContainer}>
-            <Text style={{ color: colors.darkGrey, ...TextType.paragraph }}>
+            <Text style={{ color: colors.darkGrey, ...textType.paragraph }}>
               Person
             </Text>
           </View>
@@ -197,7 +197,7 @@ const FlightSearch = () => {
           <TextInput
             style={{
               ...styles.textInput,
-              ...TextType.paragraph,
+              ...textType.paragraph,
               paddingVertical: 8,
             }}
             placeholder="Seat Class"

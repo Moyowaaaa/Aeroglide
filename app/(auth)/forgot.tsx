@@ -2,7 +2,7 @@ import Header from "@/components/auth/Header";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import FormInput from "@/components/general/TextInput";
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, View } from "react-native";
@@ -31,7 +31,7 @@ const ForgotPasswordScreen = () => {
             <Text
               style={[
                 {
-                  ...TextType.paragraph,
+                  ...textType.paragraph,
                   color: colors.darkGrey,
                   alignSelf: "center",
                   textAlign: "center",

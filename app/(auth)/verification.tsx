@@ -1,7 +1,7 @@
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import NavigationBar from "@/components/general/NavigationBar";
-import { colors, TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { router, useLocalSearchParams } from "expo-router";
 import React from "react";
 import {
@@ -33,7 +33,7 @@ const VerificationScreen = () => {
 
           <Text
             style={{
-              ...TextType.header,
+              ...textType.header,
               fontSize: 20,
               textAlign: "center",
               color: colors.blue,
@@ -44,7 +44,7 @@ const VerificationScreen = () => {
 
           <Text
             style={{
-              ...TextType.paragraph,
+              ...textType.paragraph,
               color: colors.grey,
               fontSize: 16,
               textAlign: "center",
@@ -82,7 +82,7 @@ const VerificationScreen = () => {
           <View className="flex-row gap-4 items-center self-center">
             <Text
               style={{
-                ...TextType.paragraph,
+                ...textType.paragraph,
                 fontSize: 16,
                 textAlign: "center",
                 alignSelf: "center",

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import { PasswordCheck } from "iconsax-react-native";
-import { TextType } from "@/constants";
+import { colors, textType } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 
 type inputProps = {
@@ -23,11 +23,12 @@ const FormInput = ({
 
   return (
     <View style={styles.container}>
-      <Text style={[TextType.paragraph, styles.label]}>{label}</Text>
+      <Text style={[textType.paragraph, styles.label]}>{label}</Text>
       <View style={styles.inputContainer}>
         <TextInput
-          style={[styles.textInput, TextType.paragraph]}
+          style={[styles.textInput, textType.paragraph]}
           placeholder={placeholder}
+          placeholderTextColor={colors.darkGrey}
           inputMode={mode ? mode : ("text" as any)}
           secureTextEntry={type === "password"}
           onChangeText={(val) => {
