@@ -34,7 +34,15 @@ const Recommend = () => {
               alignItems: "center",
             }}
           >
-            <Text>See All</Text>
+            <Text
+              style={{
+                ...textType.paragraph,
+                fontSize: 15,
+                color: colors.darkGrey,
+              }}
+            >
+              See All
+            </Text>
             <ArrowRight2 size={20} variant="Outline" color={colors.darkGrey} />
           </View>
         </Link>

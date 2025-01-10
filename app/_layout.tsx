@@ -10,6 +10,7 @@ import React, { useEffect } from "react";
 import * as SplashScreen from "expo-splash-screen";
 import "../global.css";
 import { StatusBar } from "react-native";
+import { FlightSearchProvider } from "@/context/FlightContext";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
@@ -33,16 +34,17 @@ export default function RootLayout() {
   }
 
   return (
-    <React.Fragment>
-      <Stack
-        screenOptions={{
-          headerShown: false,
-        }}
-      >
-        <Stack.Screen name="(auth)" />
-        <Stack.Screen name="explore" />
-      </Stack>
-      <StatusBar barStyle={"dark-content"} />
-    </React.Fragment>
+    <FlightSearchProvider>
+      <React.Fragment>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Stack.Screen name="(auth)" />
+        </Stack>
+        <StatusBar barStyle={"dark-content"} />
+      </React.Fragment>
+    </FlightSearchProvider>
   );
 }

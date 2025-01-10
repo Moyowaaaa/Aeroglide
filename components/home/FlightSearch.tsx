@@ -1,22 +1,29 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
-  Button,
   View,
-  Platform,
   Text,
   TouchableOpacity,
-  TextInput,
   StyleSheet,
+  TextInput,
+  Modal,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { colors, isAndroid, textType } from "@/constants";
 import { CustomButton } from "../general/CustomButton";
+import { locations } from "@/constants/data";
+import ItemPicker from "../general/ItemPicker";
+import { format } from "date-fns";
+import { formatDateWithSuffix } from "@/utils";
+import { router } from "expo-router";
+import { flightSearchContext } from "@/context/FlightContext";
+import { flight } from "@/constants/types";
 
 const FlightSearch = () => {
-  const [departureDate, setDepartureDate] = useState(new Date());
+  const { flightDetails, setFlightDetails } = useContext(flightSearchContext);
   const [showDepartureDate, setShowDepartureDate] = useState(!isAndroid);
-  const [returnDate, setReturnDate] = useState(new Date());
   const [showReturnDate, setShowReturnDate] = useState(!isAndroid);
+  const [showFromPicker, setShowFromPicker] = useState(false);
+  const [showToPicker, setShowToPicker] = useState(false);
 
   interface DateTimePickerEvent {
     type: string;
@@ -27,18 +34,44 @@ const FlightSearch = () => {
     event: DateTimePickerEvent,
     selectedDate?: Date | undefined
   ) => {
-    const currentDate = selectedDate || departureDate;
+    const currentDate = selectedDate || flightDetails.departure;
     setShowDepartureDate(!isAndroid);
-    setDepartureDate(currentDate);
+    setFlightDetails({
+      ...flightDetails,
+      departure: currentDate,
+    });
   };
 
   const onChangeReturn = (
     event: DateTimePickerEvent,
     selectedDate?: Date | undefined
   ) => {
-    const currentDate = selectedDate || returnDate;
+    const currentDate = selectedDate || flightDetails.arrival;
     setShowReturnDate(!isAndroid);
-    setReturnDate(currentDate);
+    setFlightDetails({
+      ...flightDetails,
+      arrival: currentDate,
+    });
+  };
+
+  const onSearchFlights = () => {
+    router.push({
+      pathname: "/(tabs)/booking",
+    });
+  };
+
+  const onChangeFromLocation = (location: any) => {
+    setFlightDetails({
+      ...flightDetails,
+      from: location,
+    });
+  };
+
+  const onChangeToLocation = (location: any) => {
+    setFlightDetails({
+      ...flightDetails,
+      to: location,
+    });
   };
 
   return (
@@ -62,7 +95,6 @@ const FlightSearch = () => {
           style={{
             width: "48%",
             backgroundColor: "white",
-            // paddingLeft: 6,
             paddingVertical: 6,
             gap: 6,
           }}
@@ -82,13 +114,17 @@ const FlightSearch = () => {
               style={{ marginLeft: 6 }}
               onPress={() => setShowDepartureDate(true)}
             >
-              <Text>Select Date</Text>
+              {!(flightDetails as flight)?.departure ? (
+                <Text>Select Date</Text>
+              ) : (
+                <Text>{formatDateWithSuffix(flightDetails.departure)}</Text>
+              )}
             </TouchableOpacity>
           )}
 
           {showDepartureDate && (
             <DateTimePicker
-              value={departureDate}
+              value={flightDetails.departure}
               style={{ width: "48%" }}
               mode="date"
               display="default"
@@ -101,7 +137,6 @@ const FlightSearch = () => {
           style={{
             width: "48%",
             backgroundColor: "white",
-            // paddingLeft: 6,
             paddingVertical: 6,
             gap: 6,
           }}
@@ -121,13 +156,17 @@ const FlightSearch = () => {
               style={{ marginLeft: 6 }}
               onPress={() => setShowReturnDate(true)}
             >
-              <Text>Select Date</Text>
+              {!flightDetails.arrival ? (
+                <Text>Select Date</Text>
+              ) : (
+                <Text>{formatDateWithSuffix(flightDetails.arrival)}</Text>
+              )}
             </TouchableOpacity>
           )}
 
           {showReturnDate && (
             <DateTimePicker
-              value={returnDate}
+              value={flightDetails.arrival}
               style={{ width: "48%" }}
               mode="date"
               display="default"
@@ -138,18 +177,50 @@ const FlightSearch = () => {
       </View>
 
       <View style={{ paddingVertical: 2, backgroundColor: "white" }}>
-        <TextInput
-          placeholder="From"
-          placeholderTextColor={colors.teal}
-          style={[styles.textInput, textType.paragraph]}
+        <Text
+          style={{
+            ...textType.paragraph,
+            color: colors.teal,
+            paddingLeft: 6,
+          }}
+        >
+          From
+        </Text>
+
+        <ItemPicker
+          items={locations}
+          selectedValue={flightDetails?.from}
+          onSelect={(location) => onChangeFromLocation(location)}
+          show={showFromPicker}
+          setShow={setShowFromPicker}
         />
+
+        {/* <ItemPicker
+          items={locations}
+          selectedValue={flightDetails?.from?.name}
+          onSelect={(location) => setFromLocation(location)}
+          show={showFromPicker}
+          setShow={setShowFromPicker}
+        /> */}
       </View>
 
       <View style={{ paddingVertical: 2, backgroundColor: "white" }}>
-        <TextInput
-          placeholder="To"
-          placeholderTextColor={colors.teal}
-          style={[styles.textInput, textType.paragraph]}
+        <Text
+          style={{
+            ...textType.paragraph,
+            color: colors.teal,
+            paddingLeft: 6,
+          }}
+        >
+          To
+        </Text>
+
+        <ItemPicker
+          items={locations}
+          selectedValue={flightDetails?.to}
+          onSelect={(location) => onChangeToLocation(location)}
+          show={showToPicker}
+          setShow={setShowToPicker}
         />
       </View>
 
@@ -164,7 +235,6 @@ const FlightSearch = () => {
           style={{
             width: "48%",
             backgroundColor: "white",
-            // paddingLeft: 6,
             paddingVertical: 6,
             gap: 6,
             flexDirection: "row",
@@ -176,11 +246,19 @@ const FlightSearch = () => {
               ...textType.paragraph,
               paddingVertical: 8,
             }}
+            value={flightDetails?.seats}
+            onChangeText={(val) =>
+              setFlightDetails({
+                ...flightDetails,
+                seats: parseInt(val),
+              })
+            }
+            inputMode="numeric"
             placeholder="Seat"
           />
           <View style={styles.iconContainer}>
             <Text style={{ color: colors.darkGrey, ...textType.paragraph }}>
-              Person
+              Person{flightDetails.seats > 1 && `s`}
             </Text>
           </View>
         </View>
@@ -189,7 +267,6 @@ const FlightSearch = () => {
           style={{
             width: "48%",
             backgroundColor: "white",
-            // paddingLeft: 6,
             paddingVertical: 6,
             gap: 6,
           }}
@@ -206,7 +283,12 @@ const FlightSearch = () => {
         </View>
       </View>
 
-      <CustomButton type="primary" width="100%" disabled={false}>
+      <CustomButton
+        type="primary"
+        width="100%"
+        disabled={false}
+        onPress={() => onSearchFlights()}
+      >
         <Text style={{ fontSize: 16, color: "white" }}>Search Tickets</Text>
       </CustomButton>
     </View>
@@ -220,19 +302,20 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#E5E5E7",
     flexDirection: "row",
+    borderRadius: 8,
   },
   textInput: {
-    flex: 1, // Take up available space
+    flex: 1,
     paddingVertical: 12,
     paddingLeft: 10,
     fontSize: 23,
   },
   iconContainer: {
-    justifyContent: "center", // Center the icon
+    justifyContent: "center",
     alignItems: "center",
     flexDirection: "row",
     paddingHorizontal: 10,
     borderLeftWidth: 1,
-    borderLeftColor: "#d6d6d6", // Optional: separator between input and icon
+    borderLeftColor: "#d6d6d6",
   },
 });

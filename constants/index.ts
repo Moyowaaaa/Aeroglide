@@ -18,6 +18,7 @@ export const colors = {
   teal: "#00A596",
   white: "white",
   orange: "#FF5A00",
+  red: "#F42F3C",
 };
 
 export const textType = {

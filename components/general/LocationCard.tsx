@@ -4,6 +4,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import React from "react";
 import {
   ImageBackground,
+  ImageSourcePropType,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -42,7 +43,7 @@ const LocationCard = ({ location }: locationCardProps) => {
         }}
       >
         <ImageBackground
-          source={location.images as any}
+          source={location.images as ImageSourcePropType}
           resizeMode="stretch"
           className="h-full w-full"
           style={{ flex: 1 }}

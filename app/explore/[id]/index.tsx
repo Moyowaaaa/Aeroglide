@@ -1,20 +1,24 @@
-import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
+import { CustomButton } from "@/components/general/CustomButton";
 import { colors, fontTypes, isAndroid, textType } from "@/constants";
-import { locations } from "@/constants/data";
-import { location } from "@/constants/types";
-import { Ionicons } from "@expo/vector-icons";
+import { faqs, locations } from "@/constants/data";
+import { splitAmountByThousands } from "@/utils";
+import { FontAwesome6, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { useLocalSearchParams } from "expo-router";
-import React, { useMemo } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import {
   ImageBackground,
+  ImageSourcePropType,
   ScrollView,
   StatusBar,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
 const LocationScreen = () => {
   const { location } = useLocalSearchParams();
+  const [openSectionIndex, setOpenSectionIndex] = useState(-1);
+
   const place = useMemo(() => {
     if (location) {
       const foundLocation = locations.find((a) => a.name === location);
@@ -22,6 +26,16 @@ const LocationScreen = () => {
     }
     return null;
   }, [location]);
+
+  const onClick = (index: number) => {
+    setOpenSectionIndex((prevIndex) => {
+      if (prevIndex === index) {
+        return -1;
+      } else {
+        return index;
+      }
+    });
+  };
 
   return (
     <React.Fragment>
@@ -35,12 +49,12 @@ const LocationScreen = () => {
       {!place ? (
         <Text> Location not found</Text>
       ) : (
-        <ScrollView className="w-full flex-1  pb-6 ">
+        <ScrollView className="w-full flex-1  pb-64 ">
           <View style={{ height: 450, width: "100%" }}>
             <ImageBackground
               resizeMode="cover"
               className="h-[100%] w-full px-4"
-              source={place.images as any}
+              source={place.images as ImageSourcePropType}
             />
           </View>
 
@@ -52,7 +66,7 @@ const LocationScreen = () => {
                     ...textType.header,
                     color: colors.black,
                     fontSize: 26,
-                    maxWidth: 300,
+                    maxWidth: 250,
                   }}
                 >
                   {place.name.split(" ")[0]}, {place.name.split(" ")[1]}{" "}
@@ -81,7 +95,7 @@ const LocationScreen = () => {
                     color: colors.orange,
                   }}
                 >
-                  ${place.cost}
+                  ${splitAmountByThousands(place.cost)}
                 </Text>
                 <Text
                   style={{
@@ -106,6 +120,158 @@ const LocationScreen = () => {
               >
                 {place.desc}
               </Text>
+            </View>
+
+            <View
+              className="w-full 
+              flex-row items-center justify-between
+            "
+            >
+              <View className="w-6/12 border-2 border-[#e6e6e6] rounded-xl p-6 ">
+                <Text
+                  style={{
+                    ...textType.subHeader,
+                    fontSize: 12,
+                  }}
+                >
+                  Airport
+                </Text>
+                <Text
+                  style={{
+                    ...textType.header,
+                    fontSize: 32,
+                  }}
+                >
+                  {place.airport.callSign}
+                </Text>
+                <Text
+                  style={{
+                    ...textType.paragraph,
+                    fontSize: 12,
+                    color: colors.grey,
+                  }}
+                >
+                  {place.airport.distanceFromCity} from city center
+                </Text>
+              </View>
+
+              <View className="w-5/12  rounded-xl justify-between gap-6  ">
+                <View className="flex-row gap-4 items-start">
+                  <FontAwesome6
+                    name="location-dot"
+                    size={24}
+                    color={colors.red}
+                  />
+
+                  <View>
+                    <Text
+                      style={{
+                        ...textType.subHeader,
+                        fontSize: 15,
+                        color: colors.black,
+                      }}
+                    >
+                      {splitAmountByThousands(place.distance)} KM
+                    </Text>
+
+                    <Text
+                      style={{
+                        ...textType.paragraph,
+                        fontSize: 15,
+                        color: colors.grey,
+                      }}
+                    >
+                      Distance
+                    </Text>
+                  </View>
+                </View>
+
+                <View className="flex-row gap-4 items-start">
+                  <MaterialIcons name="wb-sunny" size={24} color="black" />
+
+                  <View>
+                    <Text
+                      style={{
+                        ...textType.subHeader,
+                        fontSize: 15,
+                        color: colors.black,
+                      }}
+                    >
+                      {place.currentWhether} C
+                    </Text>
+
+                    <Text
+                      style={{
+                        ...textType.paragraph,
+                        fontSize: 15,
+                        color: colors.grey,
+                      }}
+                    >
+                      Temp
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View style={{ width: "100%", gap: 10 }}>
+              {faqs.map((faq, index) => (
+                <TouchableOpacity
+                  key={index}
+                  style={{
+                    backgroundColor: colors.white,
+                    paddingVertical: 10,
+                    paddingHorizontal: 12,
+                    borderRadius: 8,
+                    gap: 6,
+                  }}
+                  onPress={() => onClick(index)}
+                >
+                  <View
+                    style={{
+                      flexDirection: "row",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Text
+                      style={{
+                        ...textType.subHeader,
+                        fontSize: 16,
+                        color: colors.black,
+                      }}
+                    >
+                      {faq.question}
+                    </Text>
+                    <Ionicons
+                      name={
+                        openSectionIndex === index
+                          ? "chevron-up"
+                          : "chevron-down"
+                      }
+                      size={24}
+                      color={colors.blue}
+                      onPress={() => onClick(index)}
+                    />
+                  </View>
+                  {openSectionIndex === index && (
+                    <Text
+                      style={{
+                        ...textType.paragraph,
+                        fontSize: 14,
+                        color: colors.darkGrey,
+                      }}
+                    >
+                      {faq.answer}
+                    </Text>
+                  )}
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            <View style={{ marginVertical: 64 }}>
+              <CustomButton type="primary" width="100%" disabled={false}>
+                <Text style={{ fontSize: 16, color: "white" }}>Book Now</Text>
+              </CustomButton>
             </View>
           </View>
         </ScrollView>

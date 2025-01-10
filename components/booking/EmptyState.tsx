@@ -1,10 +1,12 @@
 import React from "react";
 import { Text, View } from "react-native";
 
-export const ExploreScreen = () => {
+const EmptyState = () => {
   return (
     <View>
-      <Text>ExploreScreen</Text>
+      <Text>EmptyState</Text>
     </View>
   );
 };
+
+export default EmptyState;

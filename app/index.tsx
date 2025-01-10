@@ -4,6 +4,7 @@ import { Link, useRouter } from "expo-router";
 import {
   Image,
   ImageBackground,
+  ImageSourcePropType,
   Text,
   TouchableOpacity,
   View,
@@ -60,7 +61,10 @@ export default function Index() {
 
             <View className="w-full h-full  relative">
               <Image
-                source={onBoardingScreens[currentViewIndex].image as any}
+                source={
+                  onBoardingScreens[currentViewIndex]
+                    .image as ImageSourcePropType
+                }
                 alt=""
                 className="w-full h-full object-contain absolute right-[-2rem]"
                 resizeMode="contain"

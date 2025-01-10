@@ -1,11 +1,13 @@
 import { colors, textType } from "@/constants";
 import { location } from "@/constants/types";
+import { splitAmountByThousands } from "@/utils";
 import { EvilIcons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 
 import React from "react";
 import {
   ImageBackground,
+  ImageSourcePropType,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -41,7 +43,7 @@ const ExploreCard = ({ location }: locationCardProps) => {
         }}
       >
         <ImageBackground
-          source={location.images as any}
+          source={location.images as ImageSourcePropType}
           resizeMode="cover"
           className="h-full w-full"
           style={{ flex: 1, ...styles.image }}
@@ -92,7 +94,7 @@ const ExploreCard = ({ location }: locationCardProps) => {
               color: colors.orange,
             }}
           >
-            ${location.cost}{" "}
+            ${splitAmountByThousands(location.cost)}{" "}
             <Text
               style={{
                 ...textType.subHeader,
