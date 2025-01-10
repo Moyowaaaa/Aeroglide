@@ -62,17 +62,22 @@ const LocationPicker = ({
             <View style={styles.modalContainer}>
               <View style={styles.modalContent}>
                 <Picker
-                  selectedValue={selectedValue}
-                  onValueChange={(itemValue) => {
-                    onSelect(itemValue);
-                  }}
+                  selectedValue={selectedValue.name}
                   style={styles.picker}
+                  onValueChange={(itemValue) => {
+                    const selectedLocation = items.find(
+                      (loc) => loc.name === itemValue
+                    );
+                    if (selectedLocation) {
+                      onSelect(selectedLocation);
+                    }
+                  }}
                 >
                   {items.map((location) => (
                     <Picker.Item
                       key={location?.name}
                       label={location?.name}
-                      value={location}
+                      value={location.name}
                       color={colors.darkGrey}
                     />
                   ))}

@@ -32,3 +32,7 @@ export const formatDateWithSuffix = (date: Date) => {
 
   return `${day}${suffix} ${month}`;
 };
+
+export const randomizeStuff = <T>(arr: T[]): T[] => {
+  return [...arr].sort(() => Math.random() - 0.5);
+};

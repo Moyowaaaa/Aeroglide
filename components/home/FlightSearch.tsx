@@ -11,12 +11,12 @@ import DateTimePicker from "@react-native-community/datetimepicker";
 import { colors, isAndroid, textType } from "@/constants";
 import { CustomButton } from "../general/CustomButton";
 import { locations } from "@/constants/data";
-import ItemPicker from "../general/ItemPicker";
 import { format } from "date-fns";
 import { formatDateWithSuffix } from "@/utils";
 import { router } from "expo-router";
 import { flightSearchContext } from "@/context/FlightContext";
-import { flight } from "@/constants/types";
+import { flightTicket, location } from "@/constants/types";
+import LocationPicker from "../general/LocationPicker";
 
 const FlightSearch = () => {
   const { flightDetails, setFlightDetails } = useContext(flightSearchContext);
@@ -60,7 +60,7 @@ const FlightSearch = () => {
     });
   };
 
-  const onChangeFromLocation = (location: any) => {
+  const onChangeFromLocation = (location: location) => {
     setFlightDetails({
       ...flightDetails,
       from: location,
@@ -114,7 +114,7 @@ const FlightSearch = () => {
               style={{ marginLeft: 6 }}
               onPress={() => setShowDepartureDate(true)}
             >
-              {!(flightDetails as flight)?.departure ? (
+              {!(flightDetails as flightTicket)?.departure ? (
                 <Text>Select Date</Text>
               ) : (
                 <Text>{formatDateWithSuffix(flightDetails.departure)}</Text>
@@ -187,21 +187,13 @@ const FlightSearch = () => {
           From
         </Text>
 
-        <ItemPicker
+        <LocationPicker
           items={locations}
           selectedValue={flightDetails?.from}
           onSelect={(location) => onChangeFromLocation(location)}
           show={showFromPicker}
           setShow={setShowFromPicker}
         />
-
-        {/* <ItemPicker
-          items={locations}
-          selectedValue={flightDetails?.from?.name}
-          onSelect={(location) => setFromLocation(location)}
-          show={showFromPicker}
-          setShow={setShowFromPicker}
-        /> */}
       </View>
 
       <View style={{ paddingVertical: 2, backgroundColor: "white" }}>
@@ -215,7 +207,7 @@ const FlightSearch = () => {
           To
         </Text>
 
-        <ItemPicker
+        <LocationPicker
           items={locations}
           selectedValue={flightDetails?.to}
           onSelect={(location) => onChangeToLocation(location)}

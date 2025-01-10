@@ -1,4 +1,5 @@
-import { airline, faq, location } from "./types";
+import { randomizeStuff } from "@/utils";
+import { airline, durations, faq, flight, location } from "./types";
 
 export const locations: location[] = [
   {
@@ -170,5 +171,51 @@ export const airlines: airline[] = [
     name: "Delta Airlines",
     logo: require("@/assets/images/delta.png"),
     planes: ["Boeing 777", "Airbus A380"],
+  },
+  {
+    name: "lufthansa",
+    logo: require("@/assets/images/lufthansa.png"),
+    planes: ["Boeing 777", "Airbus A380"],
+  },
+  {
+    name: "Spirit Airlines",
+    logo: require("@/assets/images/spirit.png"),
+    planes: ["Boeing 747", "Airbus A380"],
+  },
+];
+
+export const timeSuffixes: number[] = [30, 10, 45, 0];
+
+export const ticketCounts: number[] = [15, 123, 30, 20, 10, 5, 3, 1];
+
+export const timings: durations[] = [
+  { duration: 4, fromTime: 10, toTime: 10 + 4 },
+  { duration: 4, fromTime: 14, toTime: 14 + 4 },
+  { duration: 3, fromTime: 7, toTime: 7 + 3 },
+  { duration: 3, fromTime: 9, toTime: 9 + 3 },
+  { duration: 5, fromTime: 12, toTime: 12 + 5 },
+];
+
+export const flights: flight[] = [
+  {
+    airline: airlines[0],
+    time: randomizeStuff(timings)[0],
+  },
+  {
+    airline: airlines[1],
+    time: randomizeStuff(timings)[0],
+  },
+  {
+    airline: airlines[3],
+    time: randomizeStuff(timings)[0],
+  },
+  {
+    airline: airlines[2],
+    time: randomizeStuff(timings)[0],
+  },
+
+  {
+    airline: airlines[4],
+    time: randomizeStuff(timings)[0],
   },
 ];

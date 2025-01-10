@@ -27,9 +27,9 @@ export type faq = {
   answer: string;
 };
 
-export type flight = {
-  from: string;
-  to: string;
+export type flightTicket = {
+  from: location;
+  to: location;
   departure: Date;
   arrival: Date;
   // price: number;
@@ -39,8 +39,23 @@ export type flight = {
   destinaton?: location;
 };
 
+export type flight = {
+  airline: airline;
+  time: durations;
+};
+
+// export const flight={
+
+// }
+
 export type airline = {
   name: string;
   logo: string;
   planes: string[];
+};
+
+export type durations = {
+  duration: number;
+  fromTime: number;
+  toTime: number;
 };

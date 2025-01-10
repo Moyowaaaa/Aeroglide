@@ -3,7 +3,7 @@ import { colors, fontTypes, isAndroid, textType } from "@/constants";
 import { faqs, locations } from "@/constants/data";
 import { splitAmountByThousands } from "@/utils";
 import { FontAwesome6, Ionicons, MaterialIcons } from "@expo/vector-icons";
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useMemo, useRef, useState } from "react";
 import {
   ImageBackground,
@@ -269,7 +269,12 @@ const LocationScreen = () => {
             </View>
 
             <View style={{ marginVertical: 64 }}>
-              <CustomButton type="primary" width="100%" disabled={false}>
+              <CustomButton
+                type="primary"
+                width="100%"
+                disabled={false}
+                onPress={() => router.navigate("/(tabs)")}
+              >
                 <Text style={{ fontSize: 16, color: "white" }}>Book Now</Text>
               </CustomButton>
             </View>

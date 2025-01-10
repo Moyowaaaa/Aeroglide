@@ -1,18 +1,23 @@
 import { colors, textType } from "@/constants";
-import { airlines, locations } from "@/constants/data";
-import { splitAmountByThousands } from "@/utils";
-import React from "react";
+import { locations, ticketCounts, timeSuffixes } from "@/constants/data";
+import { flight } from "@/constants/types";
+import { flightSearchContext } from "@/context/FlightContext";
+import { randomizeStuff, splitAmountByThousands } from "@/utils";
+import React, { useContext } from "react";
 import {
   Image,
   ImageBackground,
   ImageSourcePropType,
   Text,
+  TouchableOpacity,
   View,
 } from "react-native";
 
-const FlightTicket = () => {
+const FlightTicket = ({ flight }: { flight: flight }) => {
+  const { flightDetails } = useContext(flightSearchContext);
+
   return (
-    <View style={{ width: "100%", height: "auto" }}>
+    <TouchableOpacity style={{ width: "100%", height: "auto" }}>
       <ImageBackground
         source={require("../../assets/images/ticket.png")}
         resizeMode="cover"
@@ -33,10 +38,10 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            {airlines[0].name}
+            {flight.airline.name}
           </Text>
           <Image
-            source={airlines[0].logo as ImageSourcePropType}
+            source={flight.airline.logo as ImageSourcePropType}
             style={{ width: 20, height: 20 }}
           />
         </View>
@@ -58,7 +63,7 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            {locations[0]?.airport.callSign}
+            {flightDetails.from?.airport.callSign}
           </Text>
           <Image
             source={require("../../assets/images/distanceIndicator.png")}
@@ -72,7 +77,7 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            {locations[3]?.airport.callSign}
+            {flightDetails.to?.airport.callSign}
           </Text>
         </View>
 
@@ -93,12 +98,12 @@ const FlightTicket = () => {
               color: colors.grey,
             }}
           >
-            {locations[0]?.name?.split(" ")[0]}
+            {flightDetails?.from?.name?.split(" ")[0]}
           </Text>
           <Text
             style={{ ...textType.paragraph, fontSize: 16, color: colors.black }}
           >
-            {locations[1]?.name?.split(" ")[0]}
+            {flight.time.duration} hr
           </Text>
 
           <Text
@@ -108,7 +113,7 @@ const FlightTicket = () => {
               color: colors.grey,
             }}
           >
-            {locations[3]?.name?.split(" ")[0]}
+            {flightDetails?.to?.name?.split(" ")[0]}
           </Text>
         </View>
 
@@ -129,7 +134,7 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            07:30 AM
+            {flight.time.fromTime}:{randomizeStuff(timeSuffixes.slice(0, 1))}{" "}
           </Text>
 
           <Text
@@ -139,7 +144,7 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            10:00 AM
+            {flight.time.toTime}:{randomizeStuff(timeSuffixes.slice(0, 1))}{" "}
           </Text>
         </View>
 
@@ -164,7 +169,7 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            15 Tickets remaining
+            {randomizeStuff(ticketCounts).slice(0, 1)} Tickets remaining
           </Text>
 
           <Text
@@ -174,11 +179,15 @@ const FlightTicket = () => {
               color: colors.black,
             }}
           >
-            ${splitAmountByThousands(locations[2]?.cost)}.00
+            $
+            {splitAmountByThousands(
+              randomizeStuff(locations?.map((l) => l.cost))[0]
+            )}
+            .00
           </Text>
         </View>
       </ImageBackground>
-    </View>
+    </TouchableOpacity>
   );
 };
 
