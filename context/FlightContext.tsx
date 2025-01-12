@@ -18,6 +18,7 @@ export const FlightSearchProvider = ({
     arrival: new Date(),
     seat: "All Class",
     seats: 1,
+    isBooked: false,
   });
 
   return (

@@ -1,3 +1,4 @@
+import BookingEmptyState from "@/components/booking/EmptyState";
 import FlightTicket from "@/components/booking/FlightTicket";
 import TopBar from "@/components/booking/TopBar";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
@@ -14,23 +15,27 @@ const BookingScreen = () => {
 
   return (
     <CustomSafeAreaView>
-      <ScrollView style={styles.container}>
-        <TopBar
-          title={`${flightDetails.from?.name.split(" ")[0]} to ${
-            flightDetails.to?.name.split(" ")[0]
-          }`}
-          desc={`${flightDetails?.seats} Passenger${
-            flightDetails?.seats > 1 ? `s` : ""
-          } , ${flightDetails?.seat}`}
-          canGoBack={true}
-        />
+      {!flightDetails.isBooked ? (
+        <BookingEmptyState />
+      ) : (
+        <ScrollView style={styles.container}>
+          <TopBar
+            title={`${flightDetails.from?.name.split(" ")[0]} to ${
+              flightDetails?.to?.name.split(" ")[0]
+            }`}
+            desc={`${flightDetails?.seats} Passenger${
+              flightDetails?.seats > 1 ? `s` : ""
+            } , ${flightDetails?.seat}`}
+            canGoBack={true}
+          />
 
-        <View style={{ gap: 10 }}>
-          {flights.map((flight, index) => (
-            <FlightTicket flight={flight} key={index} />
-          ))}
-        </View>
-      </ScrollView>
+          <View style={{ gap: 10, marginTop: 24 }}>
+            {flights.map((flight, index) => (
+              <FlightTicket flight={flight} key={index} />
+            ))}
+          </View>
+        </ScrollView>
+      )}
     </CustomSafeAreaView>
   );
 };

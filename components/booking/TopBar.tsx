@@ -27,26 +27,42 @@ const TopBar = ({
         />
       )}
 
-      <View style={{ gap: 4, flex: 1, alignItems: "flex-start" }}>
+      <View
+        style={{
+          gap: 1,
+          alignItems: "center",
+          alignSelf: "center",
+          position: "absolute",
+          justifyContent: "center",
+          left: 0,
+          top: 2,
+          width: "100%",
+          paddingVertical: 2,
+        }}
+      >
         <Text
           style={{
             ...styleSheet.title,
             ...textType.paragraph,
             fontSize: 20,
             color: colors.black,
+            textAlign: "center",
+            alignSelf: "center",
           }}
         >
           {title}
         </Text>
-        <Text
-          style={{
-            ...textType.paragraph,
+        {desc && (
+          <Text
+            style={{
+              ...textType.paragraph,
 
-            color: colors.grey,
-          }}
-        >
-          {desc}
-        </Text>
+              color: colors.grey,
+            }}
+          >
+            {desc}
+          </Text>
+        )}
       </View>
     </View>
   );
@@ -55,11 +71,9 @@ const TopBar = ({
 const styleSheet = StyleSheet.create({
   container: {
     flexDirection: "row",
-    alignItems: "flex-start",
-    height: 60,
-    flex: 1,
+    alignItems: "center",
+    // height: 60,
     gap: 24,
-
     position: "relative",
   },
   icon: {
@@ -68,6 +82,7 @@ const styleSheet = StyleSheet.create({
   },
   title: {
     alignSelf: "flex-start",
+    justifyContent: "center",
   },
 });
 

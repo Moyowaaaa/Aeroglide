@@ -1,5 +1,12 @@
 import { randomizeStuff } from "@/utils";
-import { airline, durations, faq, flight, location } from "./types";
+import {
+  airline,
+  durations,
+  faq,
+  flight,
+  flightClasses,
+  location,
+} from "./types";
 
 export const locations: location[] = [
   {
@@ -160,28 +167,45 @@ export const airlines: airline[] = [
   {
     name: "Fly Emirates",
     logo: require("@/assets/images/emirates.png"),
-    planes: ["Boeing 777", "Airbus A380"],
+    planes: ["Boeing 777", "Airbus A380", "Airbus A350"],
   },
   {
     name: "Qatar Airways",
     logo: require("@/assets/images/qatar.png"),
-    planes: ["Boeing 777", "Airbus A380"],
+    planes: [
+      "Airbus A350-900",
+      "Airbus A330-900",
+      "Boeing 777-200LR",
+      "Airbus A380",
+    ],
   },
   {
     name: "Delta Airlines",
     logo: require("@/assets/images/delta.png"),
-    planes: ["Boeing 777", "Airbus A380"],
+    planes: ["Boeing 777", "Airbus A380", "Airbus A330-900"],
   },
   {
     name: "lufthansa",
     logo: require("@/assets/images/lufthansa.png"),
-    planes: ["Boeing 777", "Airbus A380"],
+    planes: [
+      "Boeing 747-8",
+      "Airbus A340-300",
+      "Boeing 747-400",
+      "Airbus A380-800",
+    ],
   },
   {
     name: "Spirit Airlines",
     logo: require("@/assets/images/spirit.png"),
-    planes: ["Boeing 747", "Airbus A380"],
+    planes: ["Boeing 747", "Airbus A321", "Airbus A320"],
   },
+];
+
+export const ticketClasses: flightClasses[] = [
+  "3 Classes",
+  "Economy",
+  "Business",
+  "First Class",
 ];
 
 export const timeSuffixes: number[] = [30, 10, 45, 0];
@@ -198,24 +222,29 @@ export const timings: durations[] = [
 
 export const flights: flight[] = [
   {
-    airline: airlines[0],
+    airline: randomizeStuff(airlines)[0],
     time: randomizeStuff(timings)[0],
+    classesAvailale: randomizeStuff(ticketClasses)[0],
   },
   {
-    airline: airlines[1],
+    airline: randomizeStuff(airlines)[0],
     time: randomizeStuff(timings)[0],
+    classesAvailale: randomizeStuff(ticketClasses)[0],
   },
   {
-    airline: airlines[3],
+    airline: randomizeStuff(airlines)[2],
     time: randomizeStuff(timings)[0],
+    classesAvailale: randomizeStuff(ticketClasses)[2],
   },
   {
-    airline: airlines[2],
+    airline: randomizeStuff(airlines)[0],
     time: randomizeStuff(timings)[0],
+    classesAvailale: randomizeStuff(ticketClasses)[1],
   },
 
   {
     airline: airlines[4],
     time: randomizeStuff(timings)[0],
+    classesAvailale: randomizeStuff(ticketClasses)[3],
   },
 ];

@@ -1,72 +1,35 @@
-import { colors, flightClassesStyles, textType } from "@/constants";
-import {
-  locations,
-  ticketClasses,
-  ticketCounts,
-  timeSuffixes,
-} from "@/constants/data";
-import { flight } from "@/constants/types";
+import { colors, textType } from "@/constants";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
-import { randomizeStuff, splitAmountByThousands } from "@/utils";
-import { Link, useRouter } from "expo-router";
-import React, { useContext, useMemo } from "react";
+import { splitAmountByThousands } from "@/utils";
+import React, { useContext } from "react";
 import {
   Image,
-  ImageBackground,
   ImageSourcePropType,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 
-const FlightTicket = ({ flight }: { flight: flight }) => {
+const BookingDetails = () => {
+  const { bookingDetails } = useContext(BookingContext);
   const { flightDetails } = useContext(flightSearchContext);
-  const { setBookingDetails } = useContext(BookingContext);
-
-  const router = useRouter();
-
-  const onOpenBookingDetails = () => {
-    setBookingDetails({
-      ...flight,
-      departureTime: ticket.departure,
-      arrivalTime: ticket.arrival,
-      cost: ticket.cost,
-    });
-
-    // Delay navigation slightly to ensure state updates
-    setTimeout(() => {
-      router.push("/(booking)/options");
-    }, 100);
-  };
-
-  const ticket = useMemo(() => {
-    return {
-      departure: `${flight.time.fromTime}:${randomizeStuff(
-        timeSuffixes.slice(0, 1)
-      )}`,
-      arrival: `${flight.time.toTime}:${randomizeStuff(
-        timeSuffixes.slice(0, 1)
-      )}`,
-      cost: randomizeStuff(locations?.map((l) => l.cost))[0],
-    };
-  }, []);
 
   return (
-    <TouchableOpacity
-      style={{ width: "100%", height: "auto" }}
-      onPress={() => onOpenBookingDetails()}
-    >
-      <ImageBackground
-        source={require("../../assets/images/ticket.png")}
-        resizeMode="cover"
-        className="h-full w-full px-4"
+    <TouchableOpacity style={{ width: "100%", height: "auto", minHeight: 220 }}>
+      <View
         style={{
           flex: 1,
           alignItems: "center",
-          justifyContent: "space-between",
-          gap: 4,
-          paddingVertical: 15,
+          justifyContent: "center",
+          marginVertical: 10,
+          paddingVertical: 2,
+          //   paddingVertical: 15,
+          gap: 6,
+          borderTopColor: colors.grey,
+          borderBottomColor: colors.grey,
+          borderTopWidth: 1,
+          borderBottomWidth: 1,
         }}
       >
         <View
@@ -78,29 +41,8 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
             alignItems: "center",
           }}
         >
-          <View style={{ gap: 2, flexDirection: "row" }}>
-            <Text
-              style={{
-                ...textType.paragraph,
-                fontSize: 14,
-                color: colors.black,
-              }}
-            >
-              {flight.airline.name}
-            </Text>
-            <Image
-              source={flight.airline.logo as ImageSourcePropType}
-              style={{ width: 20, height: 20 }}
-            />
-          </View>
-
           <View
             style={{
-              ...flightClassesStyles[flight?.classesAvailale],
-              padding: 4,
-              paddingHorizontal: 6,
-              borderRadius: 6,
-              justifyContent: "center",
               gap: 2,
               flexDirection: "row",
               alignItems: "center",
@@ -108,13 +50,17 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
           >
             <Text
               style={{
-                ...flightClassesStyles[flight?.classesAvailale],
                 ...textType.paragraph,
                 fontSize: 14,
+                color: colors.black,
               }}
             >
-              {flight?.classesAvailale}
+              {bookingDetails?.airline?.name}
             </Text>
+            <Image
+              source={bookingDetails?.airline?.logo as ImageSourcePropType}
+              style={{ width: 20, height: 20 }}
+            />
           </View>
         </View>
 
@@ -158,7 +104,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
             width: "90%",
 
             justifyContent: "space-between",
-            gap: 2,
+            gap: 1,
             flexDirection: "row",
             alignItems: "center",
           }}
@@ -179,7 +125,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
               color: colors.black,
             }}
           >
-            {flight.time.duration} hr
+            {bookingDetails?.time?.duration} hr
           </Text>
 
           <Text
@@ -192,13 +138,12 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
             {flightDetails?.to?.name?.split(" ")[0]}
           </Text>
         </View>
-
         <View
           style={{
             width: "90%",
 
             justifyContent: "space-between",
-            gap: 2,
+            gap: 1,
             flexDirection: "row",
             alignItems: "center",
           }}
@@ -210,7 +155,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
               color: colors.black,
             }}
           >
-            {ticket.departure}{" "}
+            {bookingDetails?.departureTime}{" "}
           </Text>
 
           <Text
@@ -220,14 +165,9 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
               color: colors.black,
             }}
           >
-            {ticket.arrival}{" "}
+            {bookingDetails?.arrivalTime}{" "}
           </Text>
         </View>
-
-        <Image
-          source={require("../../assets/images/dashedLine.png")}
-          style={{ width: "90%", height: 1 }}
-        />
 
         <View
           style={{
@@ -238,30 +178,40 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
             alignItems: "center",
           }}
         >
+          <View
+            style={{
+              flexDirection: "row",
+              paddingHorizontal: 6,
+              alignItems: "center",
+              gap: 15,
+              paddingVertical: 8,
+              borderRadius: 6,
+              backgroundColor: "#F4F8FB",
+            }}
+          >
+            <Text
+              style={{
+                ...textType.subHeader,
+                fontSize: 16,
+                color: colors.darkGrey,
+              }}
+            >
+              0 Stop overs
+            </Text>
+          </View>
           <Text
             style={{
-              ...textType.paragraph,
-              fontSize: 14,
+              ...textType.header,
+              fontSize: 20,
               color: colors.black,
             }}
           >
-            {randomizeStuff(ticketCounts).slice(0, 1)} Ticket(s) remaining
-          </Text>
-
-          <Text
-            style={{
-              ...textType.subHeader,
-              fontSize: 18,
-              color: colors.black,
-            }}
-          >
-            ${splitAmountByThousands(ticket.cost)}
-            .00
+            ${splitAmountByThousands(bookingDetails?.cost)}.00
           </Text>
         </View>
-      </ImageBackground>
+      </View>
     </TouchableOpacity>
   );
 };
 
-export default FlightTicket;
+export default BookingDetails;

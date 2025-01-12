@@ -34,7 +34,7 @@ const FlightSearch = () => {
     event: DateTimePickerEvent,
     selectedDate?: Date | undefined
   ) => {
-    const currentDate = selectedDate || flightDetails.departure;
+    const currentDate = selectedDate || new Date();
     setShowDepartureDate(!isAndroid);
     setFlightDetails({
       ...flightDetails,
@@ -46,7 +46,7 @@ const FlightSearch = () => {
     event: DateTimePickerEvent,
     selectedDate?: Date | undefined
   ) => {
-    const currentDate = selectedDate || flightDetails.arrival;
+    const currentDate = selectedDate || new Date();
     setShowReturnDate(!isAndroid);
     setFlightDetails({
       ...flightDetails,
@@ -57,6 +57,10 @@ const FlightSearch = () => {
   const onSearchFlights = () => {
     router.push({
       pathname: "/(tabs)/booking",
+    });
+    setFlightDetails({
+      ...flightDetails,
+      isBooked: true,
     });
   };
 
@@ -156,17 +160,19 @@ const FlightSearch = () => {
               style={{ marginLeft: 6 }}
               onPress={() => setShowReturnDate(true)}
             >
-              {!flightDetails.arrival ? (
+              {!flightDetails?.arrival ? (
                 <Text>Select Date</Text>
               ) : (
-                <Text>{formatDateWithSuffix(flightDetails.arrival)}</Text>
+                <Text>
+                  {formatDateWithSuffix(flightDetails.arrival || new Date())}
+                </Text>
               )}
             </TouchableOpacity>
           )}
 
           {showReturnDate && (
             <DateTimePicker
-              value={flightDetails.arrival}
+              value={flightDetails.arrival || new Date()}
               style={{ width: "48%" }}
               mode="date"
               display="default"
@@ -188,7 +194,9 @@ const FlightSearch = () => {
         </Text>
 
         <LocationPicker
-          items={locations}
+          items={locations?.filter(
+            (loc) => loc.name !== flightDetails?.to?.name
+          )}
           selectedValue={flightDetails?.from}
           onSelect={(location) => onChangeFromLocation(location)}
           show={showFromPicker}
@@ -208,7 +216,9 @@ const FlightSearch = () => {
         </Text>
 
         <LocationPicker
-          items={locations}
+          items={locations?.filter(
+            (loc) => loc.name !== flightDetails?.from?.name
+          )}
           selectedValue={flightDetails?.to}
           onSelect={(location) => onChangeToLocation(location)}
           show={showToPicker}
@@ -238,7 +248,8 @@ const FlightSearch = () => {
               ...textType.paragraph,
               paddingVertical: 8,
             }}
-            value={flightDetails?.seats}
+            defaultValue={"1"}
+            value={flightDetails?.seats || 1}
             onChangeText={(val) =>
               setFlightDetails({
                 ...flightDetails,
@@ -250,7 +261,7 @@ const FlightSearch = () => {
           />
           <View style={styles.iconContainer}>
             <Text style={{ color: colors.darkGrey, ...textType.paragraph }}>
-              Person{flightDetails.seats > 1 && `s`}
+              Person{flightDetails?.seats > 1 && `s`}
             </Text>
           </View>
         </View>

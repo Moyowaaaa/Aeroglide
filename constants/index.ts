@@ -44,3 +44,26 @@ export const buttonVariants = {
   primary: { backgroundColor: "#454DA9", color: "#ffff" },
   secondary: { backgroundColor: "#ffffff", color: "#000" },
 };
+
+export const flightClassesStyles = {
+  "all classes": {
+    backgroundColor: "#DBF6ED",
+    color: colors.black,
+  },
+  "3 Classes": {
+    backgroundColor: colors.grey,
+    color: "#3841A3",
+  },
+  Economy: {
+    backgroundColor: "#DBF6ED",
+    color: "#009D65",
+  },
+  Business: {
+    backgroundColor: "#FFE5E5",
+    color: colors.red,
+  },
+  "First Class": {
+    backgroundColor: "colors.grey",
+    color: "#3841A3",
+  },
+};

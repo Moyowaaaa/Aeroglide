@@ -32,21 +32,23 @@ export type flightTicket = {
   to: location;
   departure: Date;
   arrival: Date;
-  // price: number;
   seats: number;
   seat: string;
   startpoint?: location;
   destinaton?: location;
+  isBooked: boolean;
 };
+export type flightClasses =
+  | "3 Classes"
+  | "Economy"
+  | "Business"
+  | "First Class";
 
 export type flight = {
   airline: airline;
   time: durations;
+  classesAvailale: flightClasses;
 };
-
-// export const flight={
-
-// }
 
 export type airline = {
   name: string;
@@ -59,3 +61,10 @@ export type durations = {
   fromTime: number;
   toTime: number;
 };
+
+export interface bookingDetails extends flight {
+  airlineDetails: flight;
+  departureTime: string;
+  arrivalTime: string;
+  cost: any;
+}
