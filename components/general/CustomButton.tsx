@@ -68,19 +68,20 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     justifyContent: "center",
     alignItems: "center",
-    borderWidth: 0.5,
+    flexDirection: "row",
   },
   primary: {
     backgroundColor: "#454DA9",
     borderColor: "#0000001a",
+    borderWidth: 0.5,
   },
   secondary: {
     backgroundColor: "white",
     borderColor: "#0000001a",
+    borderWidth: 0.5,
   },
   base: {
     backgroundColor: "white",
-    borderColor: "#0000001a",
   },
   disabled: {
     backgroundColor: "#e0e0e0",

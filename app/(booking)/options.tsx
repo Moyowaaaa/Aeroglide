@@ -7,6 +7,7 @@ import { bookingDetails, flight } from "@/constants/types";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { splitAmountByThousands } from "@/utils";
+import { Link, useRouter } from "expo-router";
 import React, { useContext } from "react";
 import {
   Image,
@@ -19,6 +20,8 @@ import {
 import { SheetManager } from "react-native-actions-sheet";
 
 const BookingOptions = () => {
+  const router = useRouter();
+
   const { bookingDetails } = useContext(BookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
@@ -262,7 +265,11 @@ const BookingOptions = () => {
               </Text>
             </View>
 
-            <CustomButton type="primary" width={120}>
+            <CustomButton
+              type="primary"
+              width={150}
+              onPress={() => router.push("/(booking)/review")}
+            >
               <Text
                 style={{
                   ...textType.paragraph,

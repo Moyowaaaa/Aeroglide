@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { ArrowCircleRight2 } from "iconsax-react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 
@@ -76,9 +75,7 @@ export default function Index() {
         <View className="justify-center h-[30%] ">
           <View className="gap-2">
             <Text
-              style={{
-                ...textType.header,
-              }}
+              style={{ ...textType.header }}
               className="max-w-[25rem]  mx-auto text-center"
             >
               {onBoardingScreens[currentViewIndex].text ?? ""}

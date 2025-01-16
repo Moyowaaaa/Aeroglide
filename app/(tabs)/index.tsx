@@ -15,7 +15,7 @@ const HomeScreen = () => {
         <ImageBackground
           source={require("../../assets/images/largeImageBackground.png")}
           resizeMode="cover"
-          className="h-[65%] w-full px-4"
+          className="h-[70%] w-full px-4"
         >
           <HomeHeader />
           <HomeBanner />

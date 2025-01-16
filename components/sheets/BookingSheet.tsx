@@ -20,6 +20,7 @@ const BookingSheet = () => {
           position: "relative",
           paddingHorizontal: 10,
         }}
+        useBottomSafeAreaPadding={true}
         indicatorStyle={{ width: 60, backgroundColor: "#B3B3B3" }}
       >
         <View

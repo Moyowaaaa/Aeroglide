@@ -15,7 +15,6 @@ export const FlightSearchProvider = ({
     startpoint: locations[0],
     destinaton: locations[1],
     departure: new Date(),
-    arrival: new Date(),
     seat: "All Class",
     seats: 1,
     isBooked: false,

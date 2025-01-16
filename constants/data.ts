@@ -6,6 +6,7 @@ import {
   flight,
   flightClasses,
   location,
+  tripType,
 } from "./types";
 
 export const locations: location[] = [
@@ -247,4 +248,9 @@ export const flights: flight[] = [
     time: randomizeStuff(timings)[0],
     classesAvailale: randomizeStuff(ticketClasses)[3],
   },
+];
+
+export const tripTypes: tripType[] = [
+  { type: "Round Trip", image: require("@/assets/images/roundtrip.png") },
+  { type: "One Way", image: require("@/assets/images/oneWay.png") },
 ];

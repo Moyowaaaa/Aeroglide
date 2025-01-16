@@ -8,63 +8,71 @@ const TopBar = ({
   title,
   canGoBack,
   desc,
+  children,
 }: {
-  title: string;
-  canGoBack: boolean;
+  title?: string;
+  canGoBack?: boolean;
   desc?: string;
+  children?: React.ReactNode;
 }) => {
   const router = useRouter();
 
   return (
-    <View style={styleSheet.container}>
-      {canGoBack && (
-        <Ionicons
-          name="arrow-back-circle-outline"
-          size={40}
-          color={"#727272"}
-          onPress={() => router.back()}
-          style={styleSheet.icon}
-        />
-      )}
+    <React.Fragment>
+      {title ? (
+        <View style={styleSheet.container}>
+          {canGoBack && (
+            <Ionicons
+              name="arrow-back-circle-outline"
+              size={40}
+              color={"#727272"}
+              onPress={() => router.back()}
+              style={styleSheet.icon}
+            />
+          )}
 
-      <View
-        style={{
-          gap: 1,
-          alignItems: "center",
-          alignSelf: "center",
-          position: "absolute",
-          justifyContent: "center",
-          left: 0,
-          top: 2,
-          width: "100%",
-          paddingVertical: 2,
-        }}
-      >
-        <Text
-          style={{
-            ...styleSheet.title,
-            ...textType.paragraph,
-            fontSize: 20,
-            color: colors.black,
-            textAlign: "center",
-            alignSelf: "center",
-          }}
-        >
-          {title}
-        </Text>
-        {desc && (
-          <Text
+          <View
             style={{
-              ...textType.paragraph,
-
-              color: colors.grey,
+              gap: 1,
+              alignItems: "center",
+              alignSelf: "center",
+              position: "absolute",
+              justifyContent: "center",
+              left: 0,
+              top: 2,
+              width: "100%",
+              paddingVertical: 2,
             }}
           >
-            {desc}
-          </Text>
-        )}
-      </View>
-    </View>
+            <Text
+              style={{
+                ...styleSheet.title,
+                ...textType.paragraph,
+                fontSize: 20,
+                color: colors.black,
+                textAlign: "center",
+                alignSelf: "center",
+              }}
+            >
+              {title}
+            </Text>
+            {desc && (
+              <Text
+                style={{
+                  ...textType.paragraph,
+
+                  color: colors.grey,
+                }}
+              >
+                {desc}
+              </Text>
+            )}
+          </View>
+        </View>
+      ) : (
+        <>{children}</>
+      )}
+    </React.Fragment>
   );
 };
 

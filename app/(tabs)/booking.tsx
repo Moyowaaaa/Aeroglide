@@ -2,13 +2,10 @@ import BookingEmptyState from "@/components/booking/EmptyState";
 import FlightTicket from "@/components/booking/FlightTicket";
 import TopBar from "@/components/booking/TopBar";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import NavigationBar from "@/components/general/NavigationBar";
-import { airlines, flights } from "@/constants/data";
-import { flight } from "@/constants/types";
+import { flights } from "@/constants/data";
 import { flightSearchContext } from "@/context/FlightContext";
-import { useLocalSearchParams } from "expo-router";
 import React, { useContext } from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, View } from "react-native";
 
 const BookingScreen = () => {
   const { flightDetails } = useContext(flightSearchContext);
