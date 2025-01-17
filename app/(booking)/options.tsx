@@ -1,4 +1,3 @@
-import FlightTicket from "@/components/booking/FlightTicket";
 import TopBar from "@/components/booking/TopBar";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";

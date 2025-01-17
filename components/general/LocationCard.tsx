@@ -43,8 +43,8 @@ const LocationCard = ({ location }: locationCardProps) => {
         }}
       >
         <ImageBackground
-          source={location.images as ImageSourcePropType}
-          resizeMode="stretch"
+          source={location.image as ImageSourcePropType}
+          resizeMode="cover"
           className="h-full w-full"
           style={{ flex: 1 }}
         >

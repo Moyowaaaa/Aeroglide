@@ -1,4 +1,5 @@
 import { CustomButton } from "@/components/general/CustomButton";
+import SkeletonLoader from "@/components/general/SkeletonLoader";
 import { colors, fontTypes, isAndroid, textType } from "@/constants";
 import { faqs, locations } from "@/constants/data";
 import { splitAmountByThousands } from "@/utils";
@@ -53,9 +54,13 @@ const LocationScreen = () => {
           <View style={{ height: 450, width: "100%" }}>
             <ImageBackground
               resizeMode="cover"
-              className="h-[100%] w-full px-4"
-              source={place.images as ImageSourcePropType}
+              className="h-[100%] w-full px-4 z-10"
+              source={
+                (place.largeImage as ImageSourcePropType) ||
+                (place.image as ImageSourcePropType)
+              }
             />
+            <SkeletonLoader />
           </View>
 
           <View style={{ gap: 24, marginTop: 24, paddingHorizontal: 10 }}>

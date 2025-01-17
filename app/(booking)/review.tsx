@@ -305,7 +305,7 @@ const BookingReviewScreen = () => {
                 color={colors.blue}
               />
               <Text>
-                Duration: {flightDetails.to?.airport.callSign},{" "}
+                Arriving at: {flightDetails.to?.airport.callSign},{" "}
                 {flightDetails.to?.name.split(" ")[0]} |{" "}
                 {bookingDetails?.arrivalTime}
               </Text>

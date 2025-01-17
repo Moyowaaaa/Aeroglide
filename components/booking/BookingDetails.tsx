@@ -196,7 +196,7 @@ const BookingDetails = () => {
                 color: colors.darkGrey,
               }}
             >
-              0 Stop overs
+              {flightDetails?.seats} ticket{flightDetails?.seats > 1 && `s`}
             </Text>
           </View>
           <Text
@@ -206,7 +206,11 @@ const BookingDetails = () => {
               color: colors.black,
             }}
           >
-            ${splitAmountByThousands(bookingDetails?.cost)}.00
+            $
+            {splitAmountByThousands(
+              bookingDetails?.cost * flightDetails?.seats
+            )}
+            .00
           </Text>
         </View>
       </View>

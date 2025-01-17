@@ -22,8 +22,9 @@ export type location = {
   airport: airport;
   currentWhether: number;
   distance: number;
-  images: string;
+  image: string;
   statusBarAccent?: "dark-content" | "light-content";
+  largeImage?: string;
 };
 
 export type faq = {

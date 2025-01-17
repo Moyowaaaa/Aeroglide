@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import SkeletonLoader from "../general/SkeletonLoader";
 
 interface locationCardProps {
   location: location;
@@ -43,11 +44,18 @@ const ExploreCard = ({ location }: locationCardProps) => {
         }}
       >
         <ImageBackground
-          source={location.images as ImageSourcePropType}
+          source={location.image as ImageSourcePropType}
           resizeMode="cover"
-          className="h-full w-full"
-          style={{ flex: 1, ...styles.image }}
+          style={{
+            flex: 1,
+            ...styles.image,
+            zIndex: 5,
+            height: "100%",
+            width: "100%",
+          }}
         />
+
+        <SkeletonLoader />
       </View>
 
       <View
@@ -113,7 +121,7 @@ const ExploreCard = ({ location }: locationCardProps) => {
 const styles = StyleSheet.create({
   container: {
     width: "47%",
-    height: 300,
+    height: 325,
     borderRadius: 6,
     backgroundColor: "#FFF",
     shadowColor: "#000",

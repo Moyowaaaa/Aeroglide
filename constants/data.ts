@@ -24,7 +24,7 @@ export const locations: location[] = [
     currentWhether: 29,
     distance: 122,
     overview: "Explore the city of Lagos and it’s culture",
-    images: require("@/assets/images/lagos.png"),
+    image: require("@/assets/images/lagos.png"),
     statusBarAccent: "dark-content",
   },
   {
@@ -41,7 +41,8 @@ export const locations: location[] = [
     currentWhether: 21,
     distance: 125,
     overview: "Iconic Eiffel Tower in  Paris",
-    images: require("@/assets/images/paris.png"),
+    image: require("@/assets/images/paris.png"),
+    largeImage: require("@/assets/images/france2.png"),
   },
   {
     name: "Italy Milan",
@@ -57,7 +58,7 @@ export const locations: location[] = [
     currentWhether: 25,
     distance: 739,
     overview: "Iconic ancient Italian gladiatorial area",
-    images: require("@/assets/images/milan.png"),
+    image: require("@/assets/images/italy.png"),
     statusBarAccent: "dark-content",
   },
   {
@@ -73,8 +74,9 @@ export const locations: location[] = [
     currentWhether: 25,
     distance: 739,
     overview: "Explore the city of London and it’s culture",
-    images: require("@/assets/images/london.png"),
+    image: require("@/assets/images/london.png"),
     landmark: "Big Ben, London",
+    statusBarAccent: "dark-content",
   },
   {
     name: "Dubai United Arab Emirates",
@@ -90,7 +92,7 @@ export const locations: location[] = [
     currentWhether: 35,
     distance: 1239,
     overview: "Iconic Burj Khalifa in Dubai",
-    images: require("@/assets/images/dubai2.png"),
+    image: require("@/assets/images/dubai.png"),
   },
   {
     name: "Rotterdam Holland",
@@ -106,7 +108,7 @@ export const locations: location[] = [
     currentWhether: 25,
     distance: 840,
     overview: "Iconic Von Gough in Amsterdam",
-    images: require("@/assets/images/netherlands.png"),
+    image: require("@/assets/images/netherlands.png"),
   },
   {
     name: "Athens Greece",
@@ -122,7 +124,7 @@ export const locations: location[] = [
     currentWhether: 22,
     distance: 940,
     overview: "Iconic Acropolis of Athens in Greece",
-    images: require("@/assets/images/greece.png"),
+    image: require("@/assets/images/greece.png"),
   },
   {
     name: "Denmark Copenhagen",
@@ -137,7 +139,7 @@ export const locations: location[] = [
     currentWhether: 21,
     distance: 1304,
     overview: "Explore the city of Copenhagen and it’s culture",
-    images: require("@/assets/images/denmark.png"),
+    image: require("@/assets/images/denmark.png"),
     landmark: "Frederik's Church",
   },
 ];
