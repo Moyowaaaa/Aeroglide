@@ -15,7 +15,6 @@ const SkeletonLoader = () => {
     ).start();
   }, [shimmerAnimation]);
 
-  // Calculate the shimmer translateX value
   const translateX = shimmerAnimation.interpolate({
     inputRange: [0, 1],
     outputRange: [
@@ -26,14 +25,12 @@ const SkeletonLoader = () => {
 
   return (
     <View style={styles.skeletonLoader}>
-      {/* Loading Strip 1 */}
       <View style={styles.loadingStrip}>
         <Animated.View
           style={[styles.shimmerEffect, { transform: [{ translateX }] }]}
         />
       </View>
 
-      {/* Loading Strip 2 */}
       <View style={[styles.loadingStrip, styles.loadingStripSmall]}>
         <Animated.View
           style={[styles.shimmerEffect, { transform: [{ translateX }] }]}

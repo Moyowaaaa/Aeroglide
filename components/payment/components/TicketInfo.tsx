@@ -98,7 +98,7 @@ const TicketInfo = () => {
 
               <Image
                 source={require("@/assets/images/whiteDistanceIndicator.png")}
-                style={{ width: 150, height: 40 }}
+                style={{ width: 135, height: 40 }}
               />
 
               <View style={{ alignItems: "flex-end" }}>

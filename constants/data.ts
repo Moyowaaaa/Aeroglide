@@ -95,7 +95,7 @@ export const locations: location[] = [
     image: require("@/assets/images/dubai.png"),
   },
   {
-    name: "Rotterdam Holland",
+    name: "Amsterdam Holland",
     stars: 4,
     landmark: "Von Gough, Amsterdam",
     airport: {
