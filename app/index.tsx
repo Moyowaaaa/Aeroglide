@@ -1,6 +1,6 @@
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { colors, textType } from "@/constants";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import {
   Image,
   ImageBackground,

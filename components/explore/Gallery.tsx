@@ -2,7 +2,6 @@ import { colors, textType } from "@/constants";
 import { locations } from "@/constants/data";
 import React, { useMemo } from "react";
 import { ScrollView, Text, View, StyleSheet } from "react-native";
-import LocationCard from "../general/LocationCard";
 import ExploreCard from "./ExploreCard";
 import EmptyState from "../general/EmptyState";
 

@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  TouchableOpacity,
-  ViewStyle,
-  StyleSheet,
-  TextStyle,
-  View,
-} from "react-native";
+import { TouchableOpacity, ViewStyle, StyleSheet } from "react-native";
 
 type ButtonType = "primary" | "secondary" | "base";
 

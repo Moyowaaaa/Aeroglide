@@ -1,7 +1,6 @@
 import { SafeAreaView } from "react-native-safe-area-context";
 import { PropsWithChildren } from "react";
 import {
-  Platform,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Keyboard,

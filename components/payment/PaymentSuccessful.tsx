@@ -3,12 +3,11 @@ import { Image, Text, View } from "react-native";
 import TopBar from "../booking/TopBar";
 import { CustomButton } from "../general/CustomButton";
 import { colors, textType } from "@/constants";
-import { flight, flightTicket, PaymentSteps } from "@/constants/types";
-import { Ionicons, Octicons } from "@expo/vector-icons";
+import { PaymentSteps } from "@/constants/types";
+import { Octicons } from "@expo/vector-icons";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { formatDateWithSuffix } from "@/utils";
-import { format } from "date-fns";
 import { useRouter } from "expo-router";
 
 const PaymentSuccessful = ({

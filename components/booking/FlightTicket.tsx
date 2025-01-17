@@ -1,15 +1,10 @@
 import { colors, flightClassesStyles, textType } from "@/constants";
-import {
-  locations,
-  ticketClasses,
-  ticketCounts,
-  timeSuffixes,
-} from "@/constants/data";
+import { locations, ticketCounts, timeSuffixes } from "@/constants/data";
 import { flight } from "@/constants/types";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { randomizeStuff, splitAmountByThousands } from "@/utils";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import React, { useContext, useMemo } from "react";
 import {
   Image,

@@ -4,7 +4,7 @@ import { faqs, locations } from "@/constants/data";
 import { splitAmountByThousands } from "@/utils";
 import { FontAwesome6, Ionicons, MaterialIcons } from "@expo/vector-icons";
 import { router, useLocalSearchParams } from "expo-router";
-import React, { useMemo, useRef, useState } from "react";
+import React, { useMemo, useState } from "react";
 import {
   ImageBackground,
   ImageSourcePropType,

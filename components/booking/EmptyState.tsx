@@ -2,7 +2,6 @@ import { colors, textType } from "@/constants";
 import React from "react";
 import { Text, View } from "react-native";
 import { CustomButton } from "../general/CustomButton";
-import { fontType } from "@/constants/types";
 import { router } from "expo-router";
 
 const BookingEmptyState = () => {

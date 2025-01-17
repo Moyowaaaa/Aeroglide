@@ -2,12 +2,11 @@ import FlightTicket from "@/components/booking/FlightTicket";
 import TopBar from "@/components/booking/TopBar";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import { colors, flightClassesStyles, isAndroid, textType } from "@/constants";
-import { bookingDetails, flight } from "@/constants/types";
+import { colors, isAndroid, textType } from "@/constants";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { splitAmountByThousands } from "@/utils";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
 import React, { useContext } from "react";
 import {
   Image,
@@ -31,7 +30,11 @@ const BookingOptions = () => {
         <TopBar title={`${`Ticket Options`}`} canGoBack={true} />
 
         <TouchableOpacity
-          style={{ width: "100%", height: "auto", minHeight: 220 }}
+          style={{
+            width: "100%",
+            height: "auto",
+            minHeight: 220,
+          }}
           onPress={() => SheetManager.show("booking-sheet")}
         >
           <ImageBackground
@@ -184,7 +187,7 @@ const BookingOptions = () => {
             </View>
             <Image
               source={require("../../assets/images/dashedLine.png")}
-              style={{ width: "90%", height: 1 }}
+              style={{ width: "90%", height: 1, marginTop: 15 }}
             />
             <View
               style={{

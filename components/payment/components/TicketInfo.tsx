@@ -1,6 +1,5 @@
 import { CustomButton } from "@/components/general/CustomButton";
-import { colors, fontTypes, textType } from "@/constants";
-import { fontType } from "@/constants/types";
+import { colors, fontTypes, isAndroid, textType } from "@/constants";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { formatDateWithSuffix } from "@/utils";
@@ -30,19 +29,25 @@ const TicketInfo = () => {
           height: "100%",
           width: "100%",
           paddingTop: 42,
-
+          backgroundSize: "cover",
           position: "relative",
-          // justifyContent: "center",
         }}
       >
         <View
           style={{
-            height: "70%",
+            height: "65%",
+            width: "100%",
+            borderColor: "red",
 
             gap: 32,
           }}
         >
-          <View style={{ ...styles.shadowContainer, alignSelf: "center" }}>
+          <View
+            style={{
+              ...styles.shadowContainer,
+              alignSelf: "center",
+            }}
+          >
             <View
               style={{
                 width: "90%",
@@ -52,6 +57,7 @@ const TicketInfo = () => {
                 gap: 2,
                 flexDirection: "row",
                 alignItems: "center",
+                paddingHorizontal: isAndroid ? 0 : 10,
               }}
             >
               <View>
@@ -140,75 +146,101 @@ const TicketInfo = () => {
 
             <Image
               source={require("@/assets/images/ticketPlane.png")}
-              style={{ objectFit: "fill", width: "100%" }}
-            />
-          </View>
-
-          <View style={{ width: "90%", alignSelf: "center", gap: 10 }}>
-            <View
               style={{
-                width: "90%",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
+                objectFit: "fill",
+                width: isAndroid ? "100%" : "90%",
                 alignSelf: "center",
-                flexWrap: "wrap",
-                gap: 18,
               }}
-            >
-              {ticketInformation?.map((ticket, index) => (
-                <View
-                  style={{ gap: 2, minWidth: "25%", marginBottom: 20 }}
-                  key={index}
-                >
+            />
+
+            <View style={{ width: "90%", alignSelf: "center", gap: 10 }}>
+              <View
+                style={{
+                  width: "90%",
+                  flexDirection: "row",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  alignSelf: "center",
+                  flexWrap: "wrap",
+                  gap: 12,
+                  marginTop: 10,
+                }}
+              >
+                {ticketInformation?.map((ticket, index) => (
+                  <View
+                    style={{ gap: 2, minWidth: "25%", marginBottom: 20 }}
+                    key={index}
+                  >
+                    <Text
+                      style={{
+                        color: colors.grey,
+                        fontFamily: fontTypes.regular,
+                        fontSize: 14,
+                      }}
+                    >
+                      {ticket.title}
+                    </Text>
+                    <Text
+                      style={{
+                        ...textType.subHeader,
+                        color: colors.darkBlue,
+                        // fontFamily: fontTypes.semiBold,
+                        fontSize: 14,
+                      }}
+                    >
+                      {ticket.info}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+
+              <View
+                style={{
+                  width: "90%",
+                  alignSelf: "center",
+                  paddingVertical: 10,
+                }}
+              >
+                <View style={{ gap: 2, minWidth: "25%" }}>
+                  <Text
+                    style={{
+                      color: colors.black,
+                      fontFamily: fontTypes.regular,
+                      fontSize: 24,
+                    }}
+                  >
+                    Authur M.
+                  </Text>
                   <Text
                     style={{
                       color: colors.grey,
                       fontFamily: fontTypes.regular,
-                      fontSize: 14,
+                      fontSize: 10,
                     }}
                   >
-                    {ticket.title}
+                    aurthur@rdr2.com
                   </Text>
-                  <Text>{ticket.info}</Text>
                 </View>
-              ))}
-            </View>
-
-            <View
-              style={{ width: "90%", alignSelf: "center", paddingVertical: 16 }}
-            >
-              <View style={{ gap: 2, minWidth: "25%", marginBottom: 20 }}>
-                <Text
-                  style={{
-                    color: colors.black,
-                    fontFamily: fontTypes.regular,
-                    fontSize: 24,
-                  }}
-                >
-                  Authur M.
-                </Text>
-                <Text
-                  style={{
-                    color: colors.grey,
-                    fontFamily: fontTypes.regular,
-                    fontSize: 10,
-                  }}
-                >
-                  aurthur@rdr2.com
-                </Text>
               </View>
             </View>
           </View>
         </View>
 
-        <View style={{ height: "20%", gap: 16 }}>
+        <View
+          style={{
+            height: "20%",
+            gap: 16,
+            justifyContent: "flex-end",
+
+            paddingBottom: 20,
+          }}
+        >
           <Image
             source={require("@/assets/images/dashedLine.png")}
-            style={{ width: "90%", height: 1, alignSelf: "center" }}
+            style={{ width: "70%", height: 1, alignSelf: "center" }}
           />
 
-          <View style={{ gap: 2 }}>
+          <View style={{ gap: 2, paddingTop: 10 }}>
             <Text
               style={{
                 color: colors.black,
@@ -225,11 +257,10 @@ const TicketInfo = () => {
             />
           </View>
         </View>
-
         <CustomButton
           type="primary"
           width={"90%"}
-          style={{ alignSelf: "center" }}
+          style={{ alignSelf: "center", marginTop: 32 }}
         >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 6 }}>
             <Text

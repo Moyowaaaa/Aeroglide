@@ -23,7 +23,7 @@ const ForgotPasswordScreen = () => {
             label="Enter your phone number"
             placeholder="Phone Number"
             type="text"
-            onTextChange={(val) => setPhoneNumber(val)}
+            onTextChange={(val) => setPhoneNumber(parseInt(val))}
             mode="numeric"
           />
 

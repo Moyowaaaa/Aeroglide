@@ -1,6 +1,6 @@
 import { colors, textType } from "@/constants";
 import React, { useMemo } from "react";
-import { Image, Text, View } from "react-native";
+import { Text, View } from "react-native";
 
 const HomeHeader = () => {
   const currentGreeting = useMemo(() => {

@@ -1,19 +1,12 @@
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import NavigationBar from "@/components/general/NavigationBar";
 import { colors, textType } from "@/constants";
 import { router, useLocalSearchParams } from "expo-router";
 import React from "react";
-import {
-  Image,
-  StyleSheet,
-  Text,
-  Touchable,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import OTPTextInput from "react-native-otp-textinput";
 import { Edit2 } from "iconsax-react-native";
+import TopBar from "@/components/booking/TopBar";
 
 const VerificationScreen = () => {
   const { phone } = useLocalSearchParams();
@@ -21,7 +14,7 @@ const VerificationScreen = () => {
   return (
     <CustomSafeAreaView>
       <View className="w-full  flex-1 px-6 ">
-        <NavigationBar title="Verification" canGoBack={true} />
+        <TopBar title="Verification" canGoBack={true} />
 
         <View style={{ gap: 20, height: "100%", paddingTop: 20 }}>
           <Image

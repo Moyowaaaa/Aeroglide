@@ -5,10 +5,6 @@ registerSheet("booking-sheet", BookingSheet);
 
 declare module "react-native-actions-sheet" {
   interface Sheets {
-    "authentication-sheet": SheetDefinition;
-    "added-to-cart-sheet": SheetDefinition;
-    "payment-sheet": SheetDefinition;
-    "credit-debit-cards-sheet": SheetDefinition;
     "booking-sheet": SheetDefinition;
   }
 }

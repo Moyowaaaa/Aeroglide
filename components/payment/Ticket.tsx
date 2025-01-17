@@ -7,7 +7,6 @@ import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { BookingContext } from "@/context/BookingContext";
 import TicketInfo from "./components/TicketInfo";
-import { CustomButton } from "../general/CustomButton";
 
 const Ticket = () => {
   const router = useRouter();
@@ -66,7 +65,7 @@ const Ticket = () => {
         <View
           style={{
             width: "100%",
-            paddingHorizontal: 20,
+
             flex: 1,
           }}
         >

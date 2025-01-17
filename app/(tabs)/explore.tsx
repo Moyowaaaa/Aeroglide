@@ -1,11 +1,10 @@
-import Header from "@/components/auth/Header";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import NavigationBar from "@/components/general/NavigationBar";
 import { colors, textType } from "@/constants";
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import ExploreGallery from "@/components/explore/Gallery";
+import TopBar from "@/components/booking/TopBar";
 
 const ExploreScreen = () => {
   const [searchedTerm, setSearchedTerm] = useState<string>("");
@@ -13,12 +12,13 @@ const ExploreScreen = () => {
   return (
     <CustomSafeAreaView>
       <ScrollView style={styles.container}>
-        <NavigationBar title="Explore" canGoBack={true} />
+        <TopBar title="Explore" canGoBack={true} />
 
         <View
           style={{
             ...styles.inputContainer,
             width: "100%",
+            marginTop: 20,
           }}
         >
           <TextInput

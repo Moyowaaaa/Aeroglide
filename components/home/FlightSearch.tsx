@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   TextInput,
-  Modal,
   Image,
 } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
