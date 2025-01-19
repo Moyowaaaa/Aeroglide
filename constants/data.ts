@@ -205,7 +205,6 @@ export const airlines: airline[] = [
 ];
 
 export const ticketClasses: flightClasses[] = [
-  "3 Classes",
   "Economy",
   "Business",
   "First Class",
@@ -227,28 +226,33 @@ export const flights: flight[] = [
   {
     airline: randomizeStuff(airlines)[0],
     time: randomizeStuff(timings)[0],
-    classesAvailale: randomizeStuff(ticketClasses)[0],
+    classesAvailable:
+      randomizeStuff(ticketClasses)[Math.floor(Math.random() * 2)],
   },
   {
     airline: randomizeStuff(airlines)[0],
     time: randomizeStuff(timings)[0],
-    classesAvailale: randomizeStuff(ticketClasses)[0],
+    classesAvailable:
+      randomizeStuff(ticketClasses)[Math.floor(Math.random() * 2)],
   },
   {
     airline: randomizeStuff(airlines)[2],
     time: randomizeStuff(timings)[0],
-    classesAvailale: randomizeStuff(ticketClasses)[2],
+    classesAvailable:
+      randomizeStuff(ticketClasses)[Math.floor(Math.random() * 2)],
   },
   {
     airline: randomizeStuff(airlines)[0],
     time: randomizeStuff(timings)[0],
-    classesAvailale: randomizeStuff(ticketClasses)[1],
+    classesAvailable:
+      randomizeStuff(ticketClasses)[Math.floor(Math.random() * 2)],
   },
 
   {
     airline: airlines[4],
     time: randomizeStuff(timings)[0],
-    classesAvailale: randomizeStuff(ticketClasses)[3],
+    classesAvailable:
+      randomizeStuff(ticketClasses)[Math.floor(Math.random() * 2)],
   },
 ];
 

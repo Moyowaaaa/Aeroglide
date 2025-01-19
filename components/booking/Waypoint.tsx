@@ -44,7 +44,7 @@ const Waypoint = () => {
           <Text
             style={{
               ...textType.header,
-              fontSize: 20,
+              fontSize: 18,
               color: colors.black,
             }}
           >
@@ -85,7 +85,7 @@ const Waypoint = () => {
           <Text
             style={{
               ...textType.paragraph,
-              fontSize: 16,
+              fontSize: 14,
               color: colors.darkGrey,
             }}
           >
@@ -127,7 +127,7 @@ const Waypoint = () => {
           <Text
             style={{
               ...textType.header,
-              fontSize: 20,
+              fontSize: 18,
               color: colors.black,
             }}
           >

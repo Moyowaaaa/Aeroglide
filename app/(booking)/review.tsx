@@ -5,10 +5,17 @@ import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { FontAwesome6, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useContext } from "react";
-import { Image, ImageSourcePropType, Text, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { InfoCircle } from "iconsax-react-native";
 import { CustomButton } from "@/components/general/CustomButton";
 import { useRouter } from "expo-router";
+import { SheetManager } from "react-native-actions-sheet";
 
 const BookingReviewScreen = () => {
   const { bookingDetails } = useContext(BookingContext);
@@ -27,30 +34,73 @@ const BookingReviewScreen = () => {
       >
         <TopBar title={`${`Review`}`} canGoBack={true} />
 
-        <View
-          style={{
-            alignItems: "center",
-            justifyContent: "center",
-            marginVertical: 10,
-            paddingVertical: 20,
-            //   paddingVertical: 15,
-            gap: 6,
-            borderColor: "rgba(0, 0, 0, 0.05)",
-            borderWidth: 1,
-            borderRadius: 6,
-          }}
-        >
+        <TouchableOpacity onPress={() => SheetManager.show("booking-sheet")}>
           <View
             style={{
-              width: "90%",
-              gap: 2,
-              flexDirection: "row",
-              justifyContent: "space-between",
               alignItems: "center",
+              justifyContent: "center",
+              marginVertical: 10,
+              paddingVertical: 20,
+              //   paddingVertical: 15,
+              gap: 6,
+              borderColor: "rgba(0, 0, 0, 0.05)",
+              borderWidth: 1,
+              borderRadius: 6,
             }}
           >
             <View
               style={{
+                width: "90%",
+                gap: 2,
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+              }}
+            >
+              <View
+                style={{
+                  gap: 2,
+                  flexDirection: "row",
+                  alignItems: "center",
+                }}
+              >
+                <Text
+                  style={{
+                    ...textType.paragraph,
+                    fontSize: 14,
+                    color: colors.black,
+                  }}
+                >
+                  {bookingDetails?.airline?.name}
+                </Text>
+
+                <Image
+                  source={bookingDetails?.airline?.logo as ImageSourcePropType}
+                  style={{ width: 20, height: 20 }}
+                />
+
+                <Text
+                  style={{
+                    ...textType.paragraph,
+                    fontSize: 14,
+                    color: colors.black,
+                  }}
+                >
+                  |{" "}
+                  {
+                    bookingDetails?.airline?.planes[
+                      Math.floor(Math.random() * 2)
+                    ]
+                  }
+                </Text>
+              </View>
+            </View>
+
+            <View
+              style={{
+                width: "90%",
+
+                justifyContent: "space-between",
                 gap: 2,
                 flexDirection: "row",
                 alignItems: "center",
@@ -58,19 +108,48 @@ const BookingReviewScreen = () => {
             >
               <Text
                 style={{
-                  ...textType.paragraph,
-                  fontSize: 14,
+                  ...textType.header,
+                  fontSize: 26,
                   color: colors.black,
                 }}
               >
-                {bookingDetails?.airline?.name}
+                {bookingDetails?.departureTime}
               </Text>
-
               <Image
-                source={bookingDetails?.airline?.logo as ImageSourcePropType}
-                style={{ width: 20, height: 20 }}
+                source={require("../../assets/images/distanceIndicator.png")}
+                style={{ width: 150, height: 20 }}
               />
 
+              <Text
+                style={{
+                  ...textType.header,
+                  fontSize: 26,
+                  color: colors.black,
+                }}
+              >
+                {bookingDetails?.arrivalTime}
+              </Text>
+            </View>
+
+            <View
+              style={{
+                width: "90%",
+
+                justifyContent: "space-between",
+                gap: 1,
+                flexDirection: "row",
+                alignItems: "center",
+              }}
+            >
+              <Text
+                style={{
+                  ...textType.paragraph,
+                  fontSize: 12,
+                  color: colors.grey,
+                }}
+              >
+                {flightDetails?.from?.name?.split(" ")[0]}
+              </Text>
               <Text
                 style={{
                   ...textType.paragraph,
@@ -78,87 +157,21 @@ const BookingReviewScreen = () => {
                   color: colors.black,
                 }}
               >
-                |{" "}
-                {bookingDetails?.airline?.planes[Math.floor(Math.random() * 2)]}
+                {bookingDetails?.time?.duration} hr
+              </Text>
+
+              <Text
+                style={{
+                  ...textType.paragraph,
+                  fontSize: 12,
+                  color: colors.grey,
+                }}
+              >
+                {flightDetails?.to?.name?.split(" ")[0]}
               </Text>
             </View>
           </View>
-
-          <View
-            style={{
-              width: "90%",
-
-              justifyContent: "space-between",
-              gap: 2,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                ...textType.header,
-                fontSize: 26,
-                color: colors.black,
-              }}
-            >
-              {bookingDetails?.departureTime}
-            </Text>
-            <Image
-              source={require("../../assets/images/distanceIndicator.png")}
-              style={{ width: 150, height: 20 }}
-            />
-
-            <Text
-              style={{
-                ...textType.header,
-                fontSize: 26,
-                color: colors.black,
-              }}
-            >
-              {bookingDetails?.arrivalTime}
-            </Text>
-          </View>
-
-          <View
-            style={{
-              width: "90%",
-
-              justifyContent: "space-between",
-              gap: 1,
-              flexDirection: "row",
-              alignItems: "center",
-            }}
-          >
-            <Text
-              style={{
-                ...textType.paragraph,
-                fontSize: 12,
-                color: colors.grey,
-              }}
-            >
-              {flightDetails?.from?.name?.split(" ")[0]}
-            </Text>
-            <Text
-              style={{
-                ...textType.paragraph,
-                fontSize: 12,
-                color: colors.black,
-              }}
-            >
-              {bookingDetails?.time?.duration} hr
-            </Text>
-
-            <Text
-              style={{
-                ...textType.paragraph,
-                fontSize: 12,
-                color: colors.grey,
-              }}
-            >
-              {flightDetails?.to?.name?.split(" ")[0]}
-            </Text>
-          </View>
-        </View>
+        </TouchableOpacity>
 
         <View
           style={{

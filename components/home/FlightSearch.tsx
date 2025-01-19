@@ -338,6 +338,7 @@ const FlightSearch = () => {
               }}
               placeholder="Seat Class"
               placeholderTextColor={colors.teal}
+              value="All Classes"
             />
           </View>
         </View>

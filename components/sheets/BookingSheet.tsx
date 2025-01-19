@@ -11,7 +11,6 @@ const BookingSheet = () => {
       <ActionSheet
         gestureEnabled
         containerStyle={{
-          paddingTop: 10,
           borderTopLeftRadius: 25,
           borderTopRightRadius: 25,
 
@@ -28,7 +27,9 @@ const BookingSheet = () => {
             flexDirection: "row",
             alignItems: "center",
             justifyContent: "space-between",
-            width: "100%",
+            width: "95%",
+            paddingTop: 24,
+            alignSelf: "center",
           }}
         >
           <Text

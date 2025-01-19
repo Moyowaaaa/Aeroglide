@@ -218,7 +218,7 @@ const TicketInfo = () => {
                       fontSize: 10,
                     }}
                   >
-                    aurthur@rdr2.com
+                    authur@rdr2.com
                   </Text>
                 </View>
               </View>

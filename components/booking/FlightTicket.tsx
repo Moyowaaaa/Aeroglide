@@ -27,6 +27,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
       departureTime: ticket.departure,
       arrivalTime: ticket.arrival,
       cost: ticket.cost,
+      class: flight.classesAvailable,
     });
 
     // Delay navigation slightly to ensure state updates
@@ -91,7 +92,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
 
           <View
             style={{
-              ...flightClassesStyles[flight?.classesAvailale],
+              ...flightClassesStyles[flight?.classesAvailable],
               padding: 4,
               paddingHorizontal: 6,
               borderRadius: 6,
@@ -103,12 +104,12 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
           >
             <Text
               style={{
-                ...flightClassesStyles[flight?.classesAvailale],
+                ...flightClassesStyles[flight?.classesAvailable],
                 ...textType.paragraph,
                 fontSize: 14,
               }}
             >
-              {flight?.classesAvailale}
+              {flight?.classesAvailable}
             </Text>
           </View>
         </View>

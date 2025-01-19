@@ -16,10 +16,10 @@ import {
   View,
 } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
+import ClassDetails from "@/components/booking/ClassDetails";
 
 const BookingOptions = () => {
   const router = useRouter();
-
   const { bookingDetails } = useContext(BookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
@@ -222,6 +222,8 @@ const BookingOptions = () => {
             </View>
           </ImageBackground>
         </TouchableOpacity>
+
+        <ClassDetails />
 
         <View
           style={{
