@@ -1,7 +1,13 @@
 import { colors, isAndroid, textType } from "@/constants";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useContext } from "react";
-import { StatusBar, Text, View } from "react-native";
+import {
+  Image,
+  ImageSourcePropType,
+  StatusBar,
+  Text,
+  View,
+} from "react-native";
 import TopBar from "../booking/TopBar";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
@@ -59,6 +65,11 @@ const Ticket = () => {
               {" "}
               {bookingDetails.airline.name}
             </Text>
+
+            <Image
+              source={bookingDetails.airline.logo as ImageSourcePropType}
+              style={{ width: 20, height: 20, objectFit: "contain" }}
+            />
           </View>
         </TopBar>
 

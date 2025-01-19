@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "aeroglide",
-    "slug": "aeroglide",
+    "name": "Aeroglide",
+    "slug": "Aeroglide",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,7 +14,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#323779"
+        "backgroundColor": "#ffffff"
       }
     },
     "web": {
@@ -30,7 +30,7 @@
           "image": "./assets/images/splash-icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#323779"
+          "backgroundColor": "#ffffff"
         }
       ],
       "expo-font"

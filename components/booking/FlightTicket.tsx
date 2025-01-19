@@ -30,7 +30,6 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
       class: flight.classesAvailable,
     });
 
-    // Delay navigation slightly to ensure state updates
     setTimeout(() => {
       router.push("/(booking)/options");
     }, 100);
@@ -86,7 +85,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
             </Text>
             <Image
               source={flight.airline.logo as ImageSourcePropType}
-              style={{ width: 20, height: 20 }}
+              style={{ width: 20, height: 20, objectFit: "contain" }}
             />
           </View>
 

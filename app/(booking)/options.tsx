@@ -75,7 +75,7 @@ const BookingOptions = () => {
                 </Text>
                 <Image
                   source={bookingDetails.airline.logo as ImageSourcePropType}
-                  style={{ width: 20, height: 20 }}
+                  style={{ width: 20, height: 20, objectFit: "contain" }}
                 />
               </View>
             </View>
