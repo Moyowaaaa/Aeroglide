@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  InputModeOptions,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
+} from "react-native";
 import { colors, textType } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -8,7 +14,7 @@ type inputProps = {
   type?: "text" | "password";
   placeholder?: string;
   onTextChange?: (val: string) => void;
-  mode?: string;
+  mode?: InputModeOptions;
 };
 
 const FormInput = ({
@@ -28,7 +34,7 @@ const FormInput = ({
           style={[styles.textInput, textType.paragraph]}
           placeholder={placeholder}
           placeholderTextColor={colors.darkGrey}
-          inputMode={mode || ("text" as any)}
+          inputMode={mode || ("text" as InputModeOptions)}
           secureTextEntry={type === "password"}
           onChangeText={(val) => {
             if (onTextChange) {

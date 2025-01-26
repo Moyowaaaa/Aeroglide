@@ -11,12 +11,14 @@ import {
   Image,
   ImageBackground,
   ImageSourcePropType,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
 } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
 import ClassDetails from "@/components/booking/ClassDetails";
+import { Ionicons } from "@expo/vector-icons";
 
 const BookingOptions = () => {
   const router = useRouter();
@@ -225,6 +227,61 @@ const BookingOptions = () => {
 
         <ClassDetails />
 
+        {/* <TouchableOpacity onPress={() => router.push("/seats")}>
+          <View style={{ width: "95%", alignSelf: "center", gap: 4 }}>
+            <Text
+              style={{
+                ...textType.subHeader,
+                fontSize: 16,
+                color: colors.black,
+              }}
+            >
+              Seating
+            </Text>
+
+            <View
+              style={{
+                ...styles.boxShadow,
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "space-between",
+                paddingVertical: 10,
+                backgroundColor: colors.white,
+                paddingHorizontal: 2,
+                borderRadius: 6,
+              }}
+            >
+              <View style={{ gap: 10, flexDirection: "row" }}>
+                <View
+                  style={{
+                    height: 40,
+                    width: 40,
+                    flexDirection: "row",
+                    gap: 10,
+                  }}
+                >
+                  <Image
+                    source={require("@/assets/images/seat.png")}
+                    alt=""
+                    resizeMode="cover"
+                    style={{
+                      objectFit: "cover",
+                      height: "100%",
+                      width: "100%",
+                    }}
+                  />
+                </View>
+                <View style={{ gap: 4 }}>
+                  <Text>Seat Number</Text>
+                  <Text>Add Preferences</Text>
+                </View>
+              </View>
+
+              <Ionicons name="chevron-forward" size={30} color={colors.blue} />
+            </View>
+          </View>
+        </TouchableOpacity> */}
+
         <View
           style={{
             position: "absolute",
@@ -292,3 +349,13 @@ const BookingOptions = () => {
 };
 
 export default BookingOptions;
+
+const styles = StyleSheet.create({
+  boxShadow: {
+    shadowColor: "rgba(0, 0, 0, 0.04)",
+    shadowOffset: { width: 0, height: 4.265 },
+    shadowOpacity: 0.2,
+    shadowRadius: 30.921 / 2,
+    elevation: 10,
+  },
+});

@@ -14,7 +14,7 @@ const BookingSheet = () => {
           borderTopLeftRadius: 25,
           borderTopRightRadius: 25,
 
-          height: isAndroid ? 600 : 570,
+          height: 600,
           padding: 4,
           position: "relative",
           paddingHorizontal: 10,

@@ -6,7 +6,7 @@ import Recommend from "@/components/home/Recommend";
 import { Link } from "expo-router";
 
 import React from "react";
-import { ImageBackground, ScrollView, Text, View } from "react-native";
+import { ImageBackground, ScrollView } from "react-native";
 
 const HomeScreen = () => {
   return (
@@ -17,9 +17,6 @@ const HomeScreen = () => {
           resizeMode="cover"
           className="h-[70%] w-full px-4"
         >
-          <Link href={"/animation"}>
-            <Text>Hello</Text>
-          </Link>
           <HomeHeader />
           <HomeBanner />
 
