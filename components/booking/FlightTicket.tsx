@@ -29,10 +29,7 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
       cost: ticket.cost,
       class: flight.classesAvailable,
     });
-
-    setTimeout(() => {
-      router.push("/(booking)/options");
-    }, 100);
+    router.push("/(booking)/options");
   };
 
   const ticket = useMemo(() => {
