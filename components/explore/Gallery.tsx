@@ -55,9 +55,9 @@ const ExploreGallery = ({ searchedTerm }: { searchedTerm: string }) => {
 const styles = StyleSheet.create({
   scrollContainer: {
     flexDirection: "row",
-    flexWrap: "wrap", // Allows wrapping of children
-    justifyContent: "space-between", // Adjust spacing between items
-    gap: 16, // Space between items (requires React Native 0.71+)
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    gap: 16,
   },
 });
 

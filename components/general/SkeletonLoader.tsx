@@ -1,12 +1,13 @@
-import React from "react";
-import { View, StyleSheet, Animated, Dimensions, Easing } from "react-native";
+import { screenWidth } from "@/constants";
+import React, { useEffect, useRef } from "react";
+import { View, StyleSheet, Animated, Easing } from "react-native";
 
 const SkeletonLoader = () => {
-  const shimmerAnimation = React.useRef(new Animated.Value(0)).current;
+  const shimmerAnimation = useRef(new Animated.Value(0));
 
-  React.useEffect(() => {
+  useEffect(() => {
     Animated.loop(
-      Animated.timing(shimmerAnimation, {
+      Animated.timing(shimmerAnimation.current, {
         toValue: 1,
         duration: 1500,
         easing: Easing.linear,
@@ -15,12 +16,9 @@ const SkeletonLoader = () => {
     ).start();
   }, [shimmerAnimation]);
 
-  const translateX = shimmerAnimation.interpolate({
+  const translateX = shimmerAnimation.current.interpolate({
     inputRange: [0, 1],
-    outputRange: [
-      -Dimensions.get("window").width,
-      Dimensions.get("window").width,
-    ],
+    outputRange: [-screenWidth, screenWidth],
   });
 
   return (

@@ -20,7 +20,6 @@ export default function RootLayout() {
     Poppins_400Regular,
     Poppins_700Bold,
     Poppins_500Medium,
-
     Poppins_600SemiBold,
   });
 
