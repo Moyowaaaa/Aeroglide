@@ -1,4 +1,3 @@
-import AuthTabSwitcher from "@/components/auth/AuthTabSwitcher";
 import Header from "@/components/auth/Header";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
@@ -10,6 +9,9 @@ import React, { useState } from "react";
 import { Image, Text, View } from "react-native";
 
 export const authTabs = ["Phone Number", "Email"];
+const AuthTabSwitcher = React.lazy(
+  () => import("@/components/auth/AuthTabSwitcher")
+);
 
 const AuthScreen = () => {
   const router = useRouter();

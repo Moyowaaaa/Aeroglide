@@ -1,4 +1,4 @@
-import { colors, textType } from "@/constants";
+import { colors, flightClassesStyles, textType } from "@/constants";
 import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { splitAmountByThousands } from "@/utils";
@@ -51,7 +51,7 @@ const BookingDetails = () => {
             <Text
               style={{
                 ...textType.paragraph,
-                fontSize: 14,
+                fontSize: 16,
                 color: colors.black,
               }}
             >
@@ -62,6 +62,19 @@ const BookingDetails = () => {
               style={{ width: 20, height: 20, objectFit: "contain" }}
             />
           </View>
+
+          <Text
+            style={{
+              ...textType.subHeader,
+              fontSize: 12,
+              color:
+                flightClassesStyles[
+                  bookingDetails?.class as keyof typeof flightClassesStyles
+                ]?.color,
+            }}
+          >
+            {bookingDetails?.class}
+          </Text>
         </View>
 
         <View
@@ -192,7 +205,7 @@ const BookingDetails = () => {
             <Text
               style={{
                 ...textType.subHeader,
-                fontSize: 16,
+                fontSize: 10,
                 color: colors.darkGrey,
               }}
             >

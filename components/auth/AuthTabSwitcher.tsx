@@ -23,7 +23,7 @@ const AuthTabSwitcher = ({
 
   const onTabPress = (index: number) => {
     setSelectedTab(authTabs[index]);
-    Keyboard.dismiss();
+    // Keyboard.dismiss();
     backgroundOpacity.value = withTiming(0, {
       duration: 150,
       easing: Easing.inOut(Easing.exp),

@@ -131,7 +131,7 @@ const ClassDetails = () => {
               color: colors.black,
             }}
           >
-            {bookingDetails?.class || "Economy"}
+            {bookingDetails?.class}
           </Text>
 
           <Text
