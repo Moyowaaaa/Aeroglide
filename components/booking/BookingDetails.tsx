@@ -1,5 +1,6 @@
 import { colors, flightClassesStyles, textType } from "@/constants";
-import { BookingContext } from "@/context/BookingContext";
+import { bookingContext } from "../../context/BookingContext";
+
 import { flightSearchContext } from "@/context/FlightContext";
 import { splitAmountByThousands } from "@/utils";
 import React, { useContext } from "react";
@@ -12,7 +13,7 @@ import {
 } from "react-native";
 
 const BookingDetails = () => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
   return (
@@ -191,27 +192,39 @@ const BookingDetails = () => {
             alignItems: "center",
           }}
         >
-          <View
-            style={{
-              flexDirection: "row",
-              paddingHorizontal: 6,
-              alignItems: "center",
-              gap: 15,
-              paddingVertical: 8,
-              borderRadius: 6,
-              backgroundColor: "#F4F8FB",
-            }}
-          >
-            <Text
+          <View style={{ gap: 4, flexDirection: "row", alignItems: "center" }}>
+            <View
               style={{
-                ...textType.subHeader,
-                fontSize: 10,
-                color: colors.darkGrey,
+                flexDirection: "row",
+                paddingHorizontal: 6,
+                alignItems: "center",
+                gap: 15,
+                paddingVertical: 8,
+                borderRadius: 6,
+                backgroundColor: "#F4F8FB",
               }}
             >
-              {flightDetails?.seats} ticket{flightDetails?.seats > 1 && `s`}
+              <Text
+                style={{
+                  ...textType.subHeader,
+                  fontSize: 10,
+                  color: colors.darkGrey,
+                }}
+              >
+                {flightDetails?.seats} ticket{flightDetails?.seats > 1 && `s`}{" "}
+              </Text>
+            </View>
+            <Text
+              style={{
+                ...textType.paragraph,
+                fontSize: 18,
+                color: colors.blue,
+              }}
+            >
+              {bookingDetails.seat}
             </Text>
           </View>
+
           <Text
             style={{
               ...textType.header,

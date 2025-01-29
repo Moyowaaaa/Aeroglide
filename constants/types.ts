@@ -3,6 +3,11 @@ import { ImageSourcePropType } from "react-native";
 
 export type font = { type: string; font: string };
 
+export type onBoardingScreenText = {
+  text: string;
+  desc: string;
+};
+
 export const fontType = [];
 
 export type tripType = { type: string; image: ImageSourcePropType };
@@ -81,6 +86,7 @@ export interface bookingDetails extends flight {
   arrivalTime: string;
   cost: any;
   class?: flightClasses;
+  seat?: string;
 }
 
 export type PaymentSteps = "Make Payment" | "Payment Successful" | "Ticket";

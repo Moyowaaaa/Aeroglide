@@ -3,7 +3,6 @@ import FlightSearch from "@/components/home/FlightSearch";
 import HomeBanner from "@/components/home/HomeBanner";
 import HomeHeader from "@/components/home/HomeHeader";
 import Recommend from "@/components/home/Recommend";
-import { Link } from "expo-router";
 
 import React from "react";
 import { ImageBackground, ScrollView } from "react-native";

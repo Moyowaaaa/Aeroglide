@@ -2,7 +2,6 @@ import TopBar from "@/components/booking/TopBar";
 import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { colors, isAndroid, textType } from "@/constants";
-import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { splitAmountByThousands } from "@/utils";
 import { useRouter } from "expo-router";
@@ -18,11 +17,11 @@ import {
 } from "react-native";
 import { SheetManager } from "react-native-actions-sheet";
 import ClassDetails from "@/components/booking/ClassDetails";
-import { Ionicons } from "@expo/vector-icons";
+import { bookingContext } from "../../context/BookingContext";
 
 const BookingOptions = () => {
   const router = useRouter();
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
   return (
@@ -74,6 +73,7 @@ const BookingOptions = () => {
                   }}
                 >
                   {bookingDetails.airline.name}
+                  {bookingDetails.seat}
                 </Text>
                 <Image
                   source={bookingDetails.airline.logo as ImageSourcePropType}
@@ -227,7 +227,7 @@ const BookingOptions = () => {
 
         <ClassDetails />
 
-        {/* <TouchableOpacity onPress={() => router.push("/seats")}>
+        <TouchableOpacity>
           <View style={{ width: "95%", alignSelf: "center", gap: 4 }}>
             <Text
               style={{
@@ -251,7 +251,9 @@ const BookingOptions = () => {
                 borderRadius: 6,
               }}
             >
-              <View style={{ gap: 10, flexDirection: "row" }}>
+              <View
+                style={{ gap: 10, flexDirection: "row", alignItems: "center" }}
+              >
                 <View
                   style={{
                     height: 40,
@@ -272,15 +274,29 @@ const BookingOptions = () => {
                   />
                 </View>
                 <View style={{ gap: 4 }}>
-                  <Text>Seat Number</Text>
-                  <Text>Add Preferences</Text>
+                  <Text
+                    style={{
+                      ...textType.paragraph,
+                      fontSize: 16,
+                      color: colors.black,
+                    }}
+                  >
+                    Seat Number
+                  </Text>
+                  <Text
+                    style={{
+                      ...textType.paragraph,
+                      fontSize: 15,
+                      color: colors.black,
+                    }}
+                  >
+                    {bookingDetails?.seat}
+                  </Text>
                 </View>
               </View>
-
-              <Ionicons name="chevron-forward" size={30} color={colors.blue} />
             </View>
           </View>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
 
         <View
           style={{

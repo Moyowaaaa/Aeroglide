@@ -1,23 +1,26 @@
 import { CustomButton } from "@/components/general/CustomButton";
 import { colors, fontTypes, isAndroid, textType } from "@/constants";
-import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { formatDateWithSuffix } from "@/utils";
 import React, { useContext } from "react";
 import { Image, ImageBackground, StyleSheet, Text, View } from "react-native";
 import { ImportCurve } from "iconsax-react-native";
+import { bookingContext } from "../../../context/BookingContext";
 
 const TicketInfo = () => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
   const ticketInformation = [
     { title: "Flight No.", info: "BC 822" },
-    { title: "Class.", info: "Business" },
+    { title: "Class.", info: `${bookingDetails?.class}` },
     { title: "Ticket ID.", info: "9DF891P" },
     { title: "Passenger(s)", info: `${flightDetails?.seats} Adult` },
-    { title: "Baggage", info: "20kg" },
-    { title: "Boarding", info: "04:30 AM" },
+    { title: "Seat", info: bookingDetails?.seat },
+    {
+      title: "Boarding",
+      info: `${bookingDetails?.departureTime.slice(0, 2) - 1}:00 `,
+    },
   ];
 
   return (
@@ -98,7 +101,7 @@ const TicketInfo = () => {
 
               <Image
                 source={require("@/assets/images/whiteDistanceIndicator.png")}
-                style={{ width: 135, height: 40 }}
+                style={{ width: 120, height: 40 }}
               />
 
               <View style={{ alignItems: "flex-end" }}>
@@ -184,7 +187,6 @@ const TicketInfo = () => {
                       style={{
                         ...textType.subHeader,
                         color: colors.darkBlue,
-                        // fontFamily: fontTypes.semiBold,
                         fontSize: 14,
                       }}
                     >

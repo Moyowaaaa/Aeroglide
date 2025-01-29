@@ -1,7 +1,7 @@
 import { bookingDetails } from "@/constants/types";
 import React, { createContext, useState } from "react";
 
-export const BookingContext = createContext<any>(null);
+export const bookingContext = createContext<any>(null);
 
 export const BookingContextProvider = ({
   children,
@@ -14,8 +14,8 @@ export const BookingContextProvider = ({
   );
 
   return (
-    <BookingContext.Provider value={{ bookingDetails, setBookingDetails }}>
+    <bookingContext.Provider value={{ bookingDetails, setBookingDetails }}>
       {children}
-    </BookingContext.Provider>
+    </bookingContext.Provider>
   );
 };

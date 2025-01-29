@@ -11,12 +11,12 @@ import {
 import TopBar from "../booking/TopBar";
 import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
-import { BookingContext } from "@/context/BookingContext";
 import TicketInfo from "./components/TicketInfo";
+import { bookingContext } from "../../context/BookingContext";
 
 const Ticket = () => {
   const router = useRouter();
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
 
   return (
     <React.Fragment>

@@ -1,7 +1,6 @@
 import TopBar from "@/components/booking/TopBar";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { colors, textType } from "@/constants";
-import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { FontAwesome6, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useContext } from "react";
@@ -16,9 +15,10 @@ import { InfoCircle } from "iconsax-react-native";
 import { CustomButton } from "@/components/general/CustomButton";
 import { useRouter } from "expo-router";
 import { SheetManager } from "react-native-actions-sheet";
+import { bookingContext } from "../../context/BookingContext";
 
 const BookingReviewScreen = () => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
   const router = useRouter();
 
@@ -28,8 +28,10 @@ const BookingReviewScreen = () => {
         style={{
           paddingHorizontal: 10,
           flex: 1,
-          gap: 16,
+          gap: 1,
           position: "relative",
+          justifyContent: "space-between",
+          paddingBottom: 20,
         }}
       >
         <TopBar title={`${`Review`}`} canGoBack={true} />

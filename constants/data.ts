@@ -6,8 +6,31 @@ import {
   flight,
   flightClasses,
   location,
+  onBoardingScreenText,
   tripType,
 } from "./types";
+import { ImageSourcePropType } from "react-native";
+
+export const onBoardingScreens: Record<number, onBoardingScreenText> = {
+  0: {
+    text: "Let's Fly Somewhere, Everywhere.",
+    desc: "Make it easy for travelers to find and purchase the best deal on flights.",
+  },
+  1: {
+    text: "Discover flights to your dream destination",
+    desc: "Planning a quick getaway or long haul adventure? Find, compare and book flight with ease",
+  },
+  2: {
+    text: "Book your flight with ease",
+    desc: "Find the best deals on flights. Save time and money with our easy-to-use booking engine.",
+  },
+};
+
+export const onboardingImages: ImageSourcePropType[] = [
+  require("@/assets/images/plane.png"),
+  require("@/assets/images/discoverImage.png"),
+  require("@/assets/images/everywhereImage.png"),
+];
 
 export const locations: location[] = [
   {
@@ -260,3 +283,5 @@ export const tripTypes: tripType[] = [
   { type: "Round Trip", image: require("@/assets/images/roundtrip.png") },
   { type: "One Way", image: require("@/assets/images/oneWay.png") },
 ];
+
+export const availableSeatLetters: string[] = ["A", "B", "C", "D", "E", "F"];
