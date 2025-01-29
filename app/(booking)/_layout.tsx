@@ -10,7 +10,6 @@ const BookingLayout = () => {
     >
       <Stack.Screen name="options" />
       <Stack.Screen name="review" />
-      <Stack.Screen name="seats" />
     </Stack>
   );
 };

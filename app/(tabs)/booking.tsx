@@ -4,6 +4,7 @@ import TopBar from "@/components/booking/TopBar";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { flights } from "@/constants/data";
 import { flightSearchContext } from "@/context/FlightContext";
+import { useNavigation } from "expo-router";
 import React, { useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
