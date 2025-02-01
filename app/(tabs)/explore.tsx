@@ -1,7 +1,13 @@
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { colors, textType } from "@/constants";
 import React, { useState } from "react";
-import { ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import {
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { EvilIcons } from "@expo/vector-icons";
 import ExploreGallery from "@/components/explore/Gallery";
 import TopBar from "@/components/booking/TopBar";
@@ -26,9 +32,16 @@ const ExploreScreen = () => {
             placeholder="Search your dream location."
             placeholderTextColor={colors.darkGrey}
             onChangeText={(val) => setSearchedTerm(val)}
+            value={searchedTerm}
           />
           <View style={styles.iconContainer}>
-            <EvilIcons name="search" size={20} color="black" />
+            {searchedTerm ? (
+              <TouchableOpacity onPress={() => setSearchedTerm("")}>
+                <EvilIcons name="close-o" size={20} color="black" />
+              </TouchableOpacity>
+            ) : (
+              <EvilIcons name="search" size={20} color="black" />
+            )}
           </View>
         </View>
 

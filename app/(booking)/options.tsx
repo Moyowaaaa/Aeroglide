@@ -72,11 +72,10 @@ const BookingOptions = () => {
                     color: colors.black,
                   }}
                 >
-                  {bookingDetails.airline.name}
-                  {bookingDetails.seat}
+                  {bookingDetails?.airline?.name}
                 </Text>
                 <Image
-                  source={bookingDetails.airline.logo as ImageSourcePropType}
+                  source={bookingDetails?.airline?.logo as ImageSourcePropType}
                   style={{ width: 20, height: 20, objectFit: "contain" }}
                 />
               </View>

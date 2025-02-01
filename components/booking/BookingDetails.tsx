@@ -218,7 +218,10 @@ const BookingDetails = () => {
               style={{
                 ...textType.paragraph,
                 fontSize: 18,
-                color: colors.blue,
+                color:
+                  flightClassesStyles[
+                    bookingDetails?.class as keyof typeof flightClassesStyles
+                  ]?.color,
               }}
             >
               {bookingDetails.seat}

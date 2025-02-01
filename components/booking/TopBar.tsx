@@ -9,11 +9,13 @@ const TopBar = ({
   canGoBack,
   desc,
   children,
+  backFunction,
 }: {
   title?: string;
   canGoBack?: boolean;
   desc?: string;
   children?: React.ReactNode;
+  backFunction?: VoidFunction;
 }) => {
   const router = useRouter();
 
@@ -26,7 +28,13 @@ const TopBar = ({
               name="arrow-back-circle-outline"
               size={40}
               color={"#727272"}
-              onPress={() => router.back()}
+              onPress={() => {
+                if (backFunction) {
+                  backFunction();
+                } else {
+                  router.back();
+                }
+              }}
               style={styleSheet.icon}
             />
           )}
