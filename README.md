@@ -2,7 +2,9 @@
 
 - Dummy Mobile Flight booking Application
 
-[![Video])](https://res.cloudinary.com/dyap7epew/video/upload/v1738426532/Projects-Videos/tz5uaxic400k93zic4ux.mp4)
+<video autoplay loop muted playsinline>
+  <source src="https://res.cloudinary.com/dyap7epew/video/upload/v1738426532/Projects-Videos/tz5uaxic400k93zic4ux.mp4" type="video/mp4">
+</video>
 
 ## Tools and Technologies
 
