@@ -6,7 +6,7 @@ import { router } from "expo-router";
 
 const BookingEmptyState = () => {
   return (
-    <View className="flex-1 w-full h-[100px] justify-center items-center ">
+    <View style={{ flex: 1, width: "100%", justifyContent: "center" }}>
       <Text
         style={{
           ...textType.subHeader,
@@ -21,6 +21,9 @@ const BookingEmptyState = () => {
       <CustomButton
         type="primary"
         width="60%"
+        style={{
+          alignSelf: "center",
+        }}
         disabled={false}
         onPress={() => router.push("/")}
       >

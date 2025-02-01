@@ -24,7 +24,7 @@ const FormInput = ({
   onTextChange,
   mode,
 }: inputProps) => {
-  const [showPassword, setShowPassword] = useState<boolean>(true);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
@@ -35,7 +35,7 @@ const FormInput = ({
           placeholder={placeholder}
           placeholderTextColor={colors.darkGrey}
           inputMode={mode || ("text" as InputModeOptions)}
-          secureTextEntry={type === "password"}
+          secureTextEntry={type === "password" && !showPassword}
           onChangeText={(val) => {
             if (onTextChange) {
               onTextChange(val);
