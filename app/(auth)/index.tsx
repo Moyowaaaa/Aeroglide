@@ -5,11 +5,17 @@ import FormInput from "@/components/general/TextInput";
 import { colors, textType } from "@/constants";
 import { Ionicons } from "@expo/vector-icons";
 import { Link, useRouter } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { Image, Text, View } from "react-native";
+
+export const authTabs = ["Phone Number", "Email"];
+const AuthTabSwitcher = React.lazy(
+  () => import("@/components/auth/AuthTabSwitcher")
+);
 
 const AuthScreen = () => {
   const router = useRouter();
+  const [selectedTab, setSelectedTab] = useState<string>(authTabs[0]);
 
   return (
     <CustomSafeAreaView>
@@ -18,9 +24,20 @@ const AuthScreen = () => {
           title="Welcome Back 👋🏽"
           desc="Hello, welcome back to Aeroglide"
         />
+
+        <AuthTabSwitcher
+          selectedTab={selectedTab}
+          setSelectedTab={setSelectedTab}
+        />
+
         <View className="w-full " style={{ gap: 16 }}>
           <View style={{ gap: 1 }}>
-            <FormInput label="Email" placeholder="Enter Email" type="text" />
+            <FormInput
+              label={selectedTab}
+              placeholder={`Enter ${selectedTab}`}
+              type="text"
+              mode={selectedTab === authTabs[0] ? "numeric" : "text"}
+            />
 
             <FormInput
               label="Password"

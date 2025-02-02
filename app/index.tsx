@@ -1,40 +1,49 @@
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
-import { colors, textType } from "@/constants";
+import { colors, isAndroid, textType } from "@/constants";
 import { useRouter } from "expo-router";
-import {
-  Image,
-  ImageBackground,
-  ImageSourcePropType,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
+import { Image, ImageBackground, Text, View, ViewToken } from "react-native";
+import { useRef, useState } from "react";
+import { onboardingImages, onBoardingScreens } from "@/constants/data";
+import OnboardingItem from "@/components/onboarding/OnboardingItem";
+import Animated, {
+  useAnimatedRef,
+  useAnimatedScrollHandler,
+  useSharedValue,
+} from "react-native-reanimated";
+import NextButton from "@/components/onboarding/NextButton";
 
 export default function Index() {
   const router = useRouter();
-
-  const onBoardingScreens: Record<
-    number,
-    { text: string; desc?: string; image: string }
-  > = {
-    0: {
-      text: "Let's Fly Somewhere, Everywhere.",
-      desc: "Make it easy for travelers to find and purchase the best deal on flights.",
-      image: require("@/assets/images/plane.png"),
-    },
-    1: {
-      text: "Discover flights to your dream destination",
-      desc: "Planning a quick getaway or long haul adventure? Find, compare and book flight with ease",
-      image: require("@/assets/images/discoverImage.png"),
-    },
-  };
-
+  const x = useSharedValue(0);
   const [currentViewIndex, setCurrentViewIndex] = useState<number>(0);
+  const flatListRef = useAnimatedRef<Animated.FlatList<any>>();
+
+  const viewabilityConfig = { itemVisiblePercentThreshold: 50 };
+
+  const onViewableItemsChanged = ({
+    viewableItems,
+  }: {
+    viewableItems: ViewToken[];
+  }) => {
+    if (viewableItems[0].index !== null) {
+      setCurrentViewIndex(viewableItems[0].index);
+    }
+  };
+  const viewabilityConfigCallbackPairs = useRef([
+    { viewabilityConfig, onViewableItemsChanged },
+  ]);
+
+  const onHandleScroll = useAnimatedScrollHandler({
+    onScroll: (event) => (x.value = event.contentOffset.x),
+  });
 
   const handleContinue = () => {
-    if (currentViewIndex < 1) {
+    if (currentViewIndex < 2) {
+      flatListRef.current?.scrollToIndex({
+        animated: true,
+        index: currentViewIndex + 1,
+        viewPosition: 0.5,
+      });
       setCurrentViewIndex(currentViewIndex + 1);
     } else {
       router.push("/(auth)");
@@ -43,36 +52,59 @@ export default function Index() {
 
   return (
     <CustomSafeAreaView>
-      <View className="flex-1 w-full ">
+      <View style={{ flex: 1, position: "relative" }}>
         <ImageBackground
           source={require("../assets/images/imageBackground.png")}
-          resizeMode="cover"
+          resizeMode="contain"
         >
-          <View className="h-[70%] w-full ">
-            <View className="w-[160px] h-[90px] self-center mx-auto relative ">
-              <Image
-                source={require("../assets/images/logo.png")}
-                alt=""
-                className="w-full h-full object-contain"
-                resizeMode="contain"
-              />
-            </View>
+          <View className="w-[160px] h-[90px] self-center mx-auto relative ">
+            <Image
+              source={require("../assets/images/logo.png")}
+              alt=""
+              className="w-full h-full object-contain"
+              resizeMode="contain"
+            />
+          </View>
 
-            <View className="w-full h-full  relative">
-              <Image
-                source={
-                  onBoardingScreens[currentViewIndex]
-                    .image as ImageSourcePropType
-                }
-                alt=""
-                className="w-full h-full object-contain absolute right-[-2rem]"
-                resizeMode="contain"
-              />
-            </View>
+          <View
+            style={{ height: isAndroid ? "70%" : "70%", position: "relative" }}
+          >
+            <Animated.FlatList
+              ref={flatListRef}
+              data={onboardingImages}
+              horizontal
+              renderItem={({ item, index }) => {
+                return (
+                  <OnboardingItem
+                    onBoardingImage={item}
+                    key={index}
+                    currentViewIndex={currentViewIndex}
+                    x={x}
+                  />
+                );
+              }}
+              pagingEnabled
+              bounces={false}
+              showsHorizontalScrollIndicator={false}
+              keyExtractor={(_, index) => index.toString()}
+              onScroll={onHandleScroll}
+              scrollEventThrottle={16}
+              viewabilityConfigCallbackPairs={
+                viewabilityConfigCallbackPairs.current
+              }
+            />
           </View>
         </ImageBackground>
 
-        <View className="justify-center h-[30%] ">
+        <View
+          style={{
+            width: "100%",
+            height: "25%",
+            justifyContent: "flex-start",
+            position: "absolute",
+            bottom: isAndroid ? 25 : 10,
+          }}
+        >
           <View className="gap-2">
             <Text
               style={{ ...textType.header }}
@@ -91,17 +123,10 @@ export default function Index() {
               {onBoardingScreens[currentViewIndex].desc ?? ""}
             </Text>
 
-            <TouchableOpacity onPress={() => handleContinue()}>
-              <View className="w-[70px] h-[70px]  items-center justify-center self-center">
-                <View className="w-[60px] h-[60px]  items-center justify-center self-center bg-[#DFE0E0] rounded-full">
-                  <Ionicons
-                    name="arrow-forward-circle"
-                    size={40}
-                    color={"#3841A3"}
-                  />
-                </View>
-              </View>
-            </TouchableOpacity>
+            <NextButton
+              percentage={(currentViewIndex + 1) * (100 / 3)}
+              onPress={handleContinue}
+            />
           </View>
         </View>
       </View>

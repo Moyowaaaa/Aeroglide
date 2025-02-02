@@ -11,16 +11,16 @@ import * as SplashScreen from "expo-splash-screen";
 import "../global.css";
 import { StatusBar } from "react-native";
 import { FlightSearchProvider } from "@/context/FlightContext";
-import { BookingContextProvider } from "@/context/BookingContext";
+
 import { SheetProvider } from "react-native-actions-sheet";
 import "@/components/sheets";
+import { BookingContextProvider } from "../context/BookingContext";
 
 export default function RootLayout() {
   const [fontsLoaded] = useFonts({
     Poppins_400Regular,
     Poppins_700Bold,
     Poppins_500Medium,
-
     Poppins_600SemiBold,
   });
 
@@ -45,9 +45,8 @@ export default function RootLayout() {
               screenOptions={{
                 headerShown: false,
               }}
-            >
-              <Stack.Screen name="(auth)" />
-            </Stack>
+            />
+
             <StatusBar barStyle={"dark-content"} />
           </React.Fragment>
         </SheetProvider>

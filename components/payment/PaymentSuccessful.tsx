@@ -5,17 +5,17 @@ import { CustomButton } from "../general/CustomButton";
 import { colors, textType } from "@/constants";
 import { PaymentSteps } from "@/constants/types";
 import { Octicons } from "@expo/vector-icons";
-import { BookingContext } from "@/context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { formatDateWithSuffix } from "@/utils";
 import { useRouter } from "expo-router";
+import { bookingContext } from "../../context/BookingContext";
 
 const PaymentSuccessful = ({
   setPaymentStep,
 }: {
   setPaymentStep: React.Dispatch<SetStateAction<PaymentSteps>>;
 }) => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
   const router = useRouter();
 

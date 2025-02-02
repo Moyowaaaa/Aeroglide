@@ -1,6 +1,7 @@
 import { colors, textType } from "@/constants";
 import { SeatTypes } from "@/constants/types";
-import { BookingContext } from "@/context/BookingContext";
+import { bookingContext } from "../../context/BookingContext";
+
 import { flightSearchContext } from "@/context/FlightContext";
 import {
   AntDesign,
@@ -12,7 +13,7 @@ import React, { useContext, useMemo } from "react";
 import { Text, View } from "react-native";
 
 const ClassDetails = () => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
   const seatTypes: SeatTypes = {
@@ -131,7 +132,7 @@ const ClassDetails = () => {
               color: colors.black,
             }}
           >
-            {bookingDetails?.class || "Economy"}
+            {bookingDetails?.class}
           </Text>
 
           <Text

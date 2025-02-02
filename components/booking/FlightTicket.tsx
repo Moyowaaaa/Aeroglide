@@ -1,7 +1,13 @@
 import { colors, flightClassesStyles, textType } from "@/constants";
-import { locations, ticketCounts, timeSuffixes } from "@/constants/data";
+import {
+  availableSeatLetters,
+  locations,
+  ticketCounts,
+  timeSuffixes,
+} from "@/constants/data";
 import { flight } from "@/constants/types";
-import { BookingContext } from "@/context/BookingContext";
+import { bookingContext } from "../../context/BookingContext";
+
 import { flightSearchContext } from "@/context/FlightContext";
 import { randomizeStuff, splitAmountByThousands } from "@/utils";
 import { useRouter } from "expo-router";
@@ -17,7 +23,7 @@ import {
 
 const FlightTicket = ({ flight }: { flight: flight }) => {
   const { flightDetails } = useContext(flightSearchContext);
-  const { setBookingDetails } = useContext(BookingContext);
+  const { setBookingDetails } = useContext(bookingContext);
 
   const router = useRouter();
 
@@ -28,11 +34,11 @@ const FlightTicket = ({ flight }: { flight: flight }) => {
       arrivalTime: ticket.arrival,
       cost: ticket.cost,
       class: flight.classesAvailable,
+      seat: `${Math.floor(Math.random() * 60)}${randomizeStuff([
+        availableSeatLetters[0],
+      ])}`,
     });
-
-    setTimeout(() => {
-      router.push("/(booking)/options");
-    }, 100);
+    router.push("/(booking)/options");
   };
 
   const ticket = useMemo(() => {

@@ -2,7 +2,7 @@ import { CustomButton } from "@/components/general/CustomButton";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { colors, textType } from "@/constants";
 import { router, useLocalSearchParams } from "expo-router";
-import React from "react";
+import React, { useState } from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import OTPTextInput from "react-native-otp-textinput";
 import { Edit2 } from "iconsax-react-native";
@@ -10,6 +10,7 @@ import TopBar from "@/components/booking/TopBar";
 
 const VerificationScreen = () => {
   const { phone } = useLocalSearchParams();
+  const [otpText, setOtpText] = useState<string>("");
 
   return (
     <CustomSafeAreaView>
@@ -56,6 +57,7 @@ const VerificationScreen = () => {
               flexDirection: "row",
               justifyContent: "space-between",
             }}
+            handleTextChange={(val) => setOtpText(val)}
             inputCellLength={1}
             textInputStyle={{
               // borderRadius: 100,
@@ -95,13 +97,12 @@ const VerificationScreen = () => {
           </View>
 
           <View style={{ gap: 10, marginTop: 20 }}>
-            <CustomButton type="secondary" width="100%" disabled={false}>
-              <Text style={{ fontSize: 16, color: colors.black }}>
-                Send Again
-              </Text>
-            </CustomButton>
-
-            <CustomButton type="primary" width="100%" disabled={false}>
+            <CustomButton
+              type="primary"
+              width="100%"
+              onPress={() => router.push("/(auth)")}
+              disabled={otpText.length !== 5}
+            >
               <Text style={{ fontSize: 16, color: "white" }}>Submit</Text>
             </CustomButton>
           </View>

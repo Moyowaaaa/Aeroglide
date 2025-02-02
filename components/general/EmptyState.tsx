@@ -10,6 +10,7 @@ const EmptyState = ({ searchedTerm }: { searchedTerm: string }) => {
           ...textType.subHeader,
           fontSize: 20,
           color: colors.orange,
+          textAlign: "center",
         }}
       >
         No Locations Found on {searchedTerm}
@@ -21,11 +22,3 @@ const EmptyState = ({ searchedTerm }: { searchedTerm: string }) => {
 };
 
 export default EmptyState;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    height: "100%",
-    borderWidth: 2,
-  },
-});

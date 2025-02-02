@@ -1,12 +1,12 @@
 import { colors, textType } from "@/constants";
-import { BookingContext } from "@/context/BookingContext";
+import { bookingContext } from "../../context/BookingContext";
 import { flightSearchContext } from "@/context/FlightContext";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React, { useContext } from "react";
 import { Image, Text, View } from "react-native";
 
 const Waypoint = () => {
-  const { bookingDetails } = useContext(BookingContext);
+  const { bookingDetails } = useContext(bookingContext);
   const { flightDetails } = useContext(flightSearchContext);
 
   return (

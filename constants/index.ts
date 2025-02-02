@@ -1,4 +1,4 @@
-import { Platform } from "react-native";
+import { Dimensions, Platform } from "react-native";
 
 export const fontTypes = {
   regular: "Poppins_400Regular",
@@ -8,6 +8,8 @@ export const fontTypes = {
 };
 
 export const isAndroid = Platform.OS === "android";
+
+export const { width: screenWidth } = Dimensions.get("window");
 
 export const colors = {
   black: "#000",

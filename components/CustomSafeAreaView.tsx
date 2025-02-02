@@ -7,17 +7,15 @@ import {
   ViewStyle,
 } from "react-native";
 import { useRoute } from "@react-navigation/native";
+import { isAndroid } from "@/constants";
 
 const CustomSafeAreaView = ({ children, ...rest }: PropsWithChildren) => {
   const route = useRoute();
 
-  const containerStyle: ViewStyle =
-    route.name === "shop" ? styles.containerUp : styles.containerDown;
-
   return (
-    <SafeAreaView style={[styles.container, containerStyle]} {...rest}>
+    <SafeAreaView style={[styles.container]} {...rest}>
       <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
+        behavior={"height"}
         contentContainerStyle={{ flexGrow: 1 }}
         className="flex-1"
         keyboardVerticalOffset={10}
@@ -34,11 +32,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-  },
-  containerDown: {
-    paddingVertical: Platform.OS === "ios" ? 10 : 10,
-  },
-  containerUp: {
-    paddingVertical: Platform.OS === "ios" ? 5 : 20,
+    paddingVertical: !isAndroid ? 10 : 10,
   },
 });

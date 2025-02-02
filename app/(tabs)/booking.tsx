@@ -4,11 +4,22 @@ import TopBar from "@/components/booking/TopBar";
 import CustomSafeAreaView from "@/components/general/CustomSafeAreaView";
 import { flights } from "@/constants/data";
 import { flightSearchContext } from "@/context/FlightContext";
+import { router } from "expo-router";
 import React, { useContext } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
 
 const BookingScreen = () => {
-  const { flightDetails } = useContext(flightSearchContext);
+  const { flightDetails, setFlightDetails } = useContext(flightSearchContext);
+
+  const resetBooking = () => {
+    router.back();
+    setTimeout(() => {
+      setFlightDetails({
+        ...flightDetails,
+        isBooked: false,
+      });
+    }, 1000);
+  };
 
   return (
     <CustomSafeAreaView>
@@ -24,6 +35,7 @@ const BookingScreen = () => {
               flightDetails?.seats > 1 ? `s` : ""
             } , ${flightDetails?.seat}`}
             canGoBack={true}
+            backFunction={resetBooking}
           />
 
           <View style={{ gap: 10, marginTop: 24 }}>

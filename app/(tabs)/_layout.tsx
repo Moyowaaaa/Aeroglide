@@ -1,10 +1,28 @@
-import { Tabs } from "expo-router";
-import React from "react";
+import { Tabs, useNavigation } from "expo-router";
+import React, { useEffect } from "react";
 import { Home, Ticket } from "iconsax-react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "@/constants";
+import { BackHandler } from "react-native";
 
 const HomeLayout = () => {
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const handleBackPress = () => {
+      const currentRoute =
+        navigation.getState().routes[navigation.getState().index]?.name;
+      if (currentRoute === "(tabs)") {
+        return true;
+      }
+      return false;
+    };
+    BackHandler.addEventListener("hardwareBackPress", handleBackPress);
+    return () => {
+      BackHandler.removeEventListener("hardwareBackPress", handleBackPress);
+    };
+  }, [navigation]);
+
   return (
     <Tabs
       screenOptions={{
@@ -18,7 +36,6 @@ const HomeLayout = () => {
         name="index"
         options={{
           title: "Home",
-
           tabBarIcon: ({ focused }) => (
             <Home
               size={22}
