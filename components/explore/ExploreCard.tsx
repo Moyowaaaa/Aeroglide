@@ -53,6 +53,9 @@ const ExploreCard = ({ location }: locationCardProps) => {
             height: "100%",
             width: "100%",
           }}
+          imageStyle={{
+            borderRadius: 4,
+          }}
         />
 
         <SkeletonLoader />

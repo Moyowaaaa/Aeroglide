@@ -73,6 +73,7 @@ const OnboardingItem = ({
         style={{
           width,
           height: 450,
+          minHeight: 450,
         }}
       />
     </Animated.View>

@@ -1,7 +1,10 @@
+import { usePreventBackNavigation } from "@/hooks/usePreventBackNavigation";
 import { Stack } from "expo-router";
 import React from "react";
 
 const AuthLayout = () => {
+  usePreventBackNavigation("(auth)");
+
   return (
     <Stack
       screenOptions={{

@@ -41,13 +41,6 @@ const HomeHeader = () => {
           Where are you going?
         </Text>
       </View>
-
-      {/* <Image
-        source={require("../../assets/images/avatar.png")}
-        alt=""
-        resizeMode="cover"
-        className="h-[20px] w-[20px] border-2 border-"
-      /> */}
     </View>
   );
 };
