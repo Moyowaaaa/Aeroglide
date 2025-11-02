@@ -2,9 +2,9 @@
 
 - Dummy Mobile Flight booking Application
 
-<video autoplay loop muted playsinline>
-  <source src="https://res.cloudinary.com/dyap7epew/video/upload/v1738426532/Projects-Videos/tz5uaxic400k93zic4ux.mp4" type="video/mp4">
-</video>
+[![Aeroglide App Demo](https://img.shields.io/badge/▶️-Watch%20Demo-red?style=for-the-badge)](https://res.cloudinary.com/dyap7epew/video/upload/v1738426532/Projects-Videos/tz5uaxic400k93zic4ux.mp4)
+
+> 🎥 **Click the badge above to watch the app demo video**
 
 ## Tools and Technologies
 
